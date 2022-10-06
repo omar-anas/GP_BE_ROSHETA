@@ -1,29 +1,14 @@
-function getOffset(currentPage = 1, listPerPage) {
-    return (currentPage - 1) * [listPerPage];
-  }
-  
-  function emptyOrRows(rows) {
-    if (!rows) {
-      return [];
-    }
-    return rows;
-  }
+const mysql = require('mysql2/promise');
+const config = require('./mysqlconfig');
 
-  function hasmore(listPerPage,count){
-    // let temp = rows_count-(offset+listPerPage)
-    if(listPerPage == count){
-      return true;
-    }else{
-      return false;
-    }
+async function query(sql, params) {
+  const connection = await mysql.createConnection(config.db);
+  const [results, ] = await connection.execute(sql, params);
+  connection.end();
 
-  }
+  return results;
+}
 
-
-  
-  module.exports = {
-    getOffset,
-    emptyOrRows,
-    hasmore
-    
-  }
+module.exports = {
+  query
+}
