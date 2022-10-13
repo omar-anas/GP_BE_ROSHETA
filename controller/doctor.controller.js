@@ -1,6 +1,8 @@
 const db = require('../DB/exectuemysql');
 const helper = require('../DB/helper')
 const config = require('../DB/mysqlconfig');
+
+
 class DoctorController {
 
 static getAllDoctors = async (req,res) =>{
@@ -56,15 +58,20 @@ static addDoctor =async (req,res)=>{
             let DOCTOR_CLINC_ID_V = doctor.CLINC_ID
             let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME
             let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME
-            let DOCTOR_EMAIL_V = req.body.DOCTOR_EMAIL
+            let DOCTOR_EMAIL_V = doctor.DOCTOR_EMAIL ? doctor.DOCTOR_EMAIL :null
+            let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD
             let ADDRESS_V = doctor.ADDRESS
             let GENDER_V = req.body.GENDER
             let DOB_V = req.body.DOB
             let SPECIALIZATION_V = req.body.SPECIALIZATION
             let PHONE_V = req.body.PHONE
 
+            if(!DOCTOR_EMAIL_V){
+                DOCTOR_EMAIL_V = helper.doctorEmailGenerator(DOCTOR_FIRST_NAME_V, DOCTOR_LAST_NAME_V);
+            }
+            const HASHED_PASSWORD_V =await helper.hashingPassword(DOCTOR_PASS_V);
             const rows = await db.query(
-                `call ADD_NEW_Doctor(${DOCTOR_ADMIN_ID_V},${DOCTOR_CLINC_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}','${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
+                `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},${DOCTOR_CLINC_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
                 );
                 const data = helper.emptyOrRows(rows);
                 res.json({ message: "Success DOCTOR IS ADDED", data });
@@ -85,14 +92,18 @@ static addDoctor =async (req,res)=>{
                 let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME
                 let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME
                 let DOCTOR_EMAIL_V = req.body.DOCTOR_EMAIL
+                let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD
                 let ADDRESS_V = doctor.ADDRESS
                 let GENDER_V = req.body.GENDER
                 let DOB_V = req.body.DOB
                 let SPECIALIZATION_V = req.body.SPECIALIZATION
                 let PHONE_V = req.body.PHONE
 
+                const HASHED_PASSWORD_V =await helper.hashingPassword(DOCTOR_PASS_V);
+                
+
                 const rows = await db.query(
-                `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},${DOCTOR_CLINC_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}','${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
+                `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},${DOCTOR_CLINC_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
                 );
                 const data = helper.emptyOrRows(rows);
                 res.json({ message: "Success DOCTOR IS MODIFIED", data });
@@ -102,6 +113,30 @@ static addDoctor =async (req,res)=>{
 
         }
 }
+
+
+static dotcorLogin = async (req,res)=>{
+    try {
+        let Doctor_Email_V = req.body.EMAIL;
+        let DOCTOR_PASS_V = req.body.PASSWORD;
+    
+        const HASHED_PASSWORD_V =await helper.hashingPassword(DOCTOR_PASS_V);
+    
+        const rows = await db.query(
+            `call LOGIN_DOCTOR('${Doctor_Email_V}',${HASHED_PASSWORD_V})`
+        )
+        
+        const data = helper.emptyOrRows(rows);
+        
+    
+        res.json({data , type:"Doctor"})
+        
+    } catch (error) {
+        res.json({ message: "failed Process", error: error.message });
+    }
+}
+
+
 }
 
 module.exports = DoctorController

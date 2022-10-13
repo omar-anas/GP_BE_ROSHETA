@@ -280,3 +280,683 @@
 2022-10-08 05:43:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
 2022-10-08 05:45:07  :  [32minfo[39m  :  [32mDB Connected .........[39m
 2022-10-08 05:45:07  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 05:31:26  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 05:31:26  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 05:53:45  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 05:53:45  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:06:26  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:06:26  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:06:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:06:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:06:31  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:06:31  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:06:50  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:06:50  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:06:55  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:06:55  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:06:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:06:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:06:59  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:06:59  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:07:05  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:07:05  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:07:13  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:07:13  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:07:17  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:07:17  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:07:19  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:07:19  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:10:13  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:10:13  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 06:10:28  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 06:10:28  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 07:26:56  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 07:26:56  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:08:39  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:08:39  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:10:39  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:10:39  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:10:42  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:10:42  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:10:48  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:10:48  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:11:09  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:11:09  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:14:09  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:14:09  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:14:19  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:14:19  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:14:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:14:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:14:38  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:14:38  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:27:28  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:27:28  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:27:30  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:27:30  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:27:57  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:27:57  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:10  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:10  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:23  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:23  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:28  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:28  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:30  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:30  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:32  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:32  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:34  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:34  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:40  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:40  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:28:46  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:28:46  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:29:15  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:29:15  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:29:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:29:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:30:05  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:30:05  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-10 09:30:08  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-10 09:30:08  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:00:41  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:00:41  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:00:46  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:00:46  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:00:50  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:00:50  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:00:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:00:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:01:20  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:01:20  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:01:23  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:01:23  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:01:28  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:01:28  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:01:34  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:01:34  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:01:40  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:01:40  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:08:38  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:08:38  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:09:45  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:09:45  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:09:53  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:09:53  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:09:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:09:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:10:12  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:10:12  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:10:32  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:10:32  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:11:40  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:11:40  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:11:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:11:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:11:56  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:11:56  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:11:59  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:11:59  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:12:28  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:12:28  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:12:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:12:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:12:36  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:12:36  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:15:20  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:15:20  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:15:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:15:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:15:26  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:15:26  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:15:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:15:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:15:31  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:15:31  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:15:34  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:15:34  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:15:37  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:15:37  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:15:39  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:15:39  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:16:05  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:16:05  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:16:08  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:16:08  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:16:11  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:16:11  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:16:17  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:16:17  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:16:46  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:16:46  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:16:55  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:16:55  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:16:57  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:16:57  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:17:03  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:17:03  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:17:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:17:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:18:15  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:18:15  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:18:19  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:18:19  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:19:39  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:19:39  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:19:41  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:19:41  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:19:44  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:19:44  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:20:57  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:20:57  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:25:59  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:25:59  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:26:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:26:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:26:08  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:26:08  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:26:14  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:26:14  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:26:20  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:26:20  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:26:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:26:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:26:39  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:26:39  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:27:05  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:27:05  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:27:10  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:27:10  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:27:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:27:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:27:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:27:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:29:42  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:29:42  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:30:37  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:30:37  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:30:42  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:30:42  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:30:43  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:30:43  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:30:55  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:30:55  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:31:01  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:31:01  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:31:03  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:31:03  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:31:11  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:31:11  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:31:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:31:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:31:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:31:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:31:43  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:31:43  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:32:07  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:32:07  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:32:18  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:32:18  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:32:21  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:32:21  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:32:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:32:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:32:23  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:32:23  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:34:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:34:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:34:20  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:34:20  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:34:24  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:34:24  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:34:31  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:34:31  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:34:34  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:34:34  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:34:45  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:34:45  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:35:11  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:35:11  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:35:13  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:35:13  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:35:15  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:35:15  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:35:17  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:35:17  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:43:56  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:43:56  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:43:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:43:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:59:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:59:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:59:44  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:59:44  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:59:47  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:59:47  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:59:50  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:59:50  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 04:59:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 04:59:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:08:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:08:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:08:36  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:08:36  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:08:40  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:08:40  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:08:47  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:08:47  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:08:55  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:08:55  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:08:59  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:08:59  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:09:01  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:09:01  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:09:03  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:09:03  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:09:21  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:09:21  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 05:09:32  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 05:09:32  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:08:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:08:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:08:06  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:08:06  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:08:09  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:08:09  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:08:12  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:08:12  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:08:15  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:08:15  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:08:18  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:08:18  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:08:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:08:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:08:30  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:08:30  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:52:16  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:52:16  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:52:19  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:52:19  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:52:20  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:52:20  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:52:23  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:52:23  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:52:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:52:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:52:31  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:52:31  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:52:32  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:52:32  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:53:18  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:53:18  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:55:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:55:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:55:36  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:55:36  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:55:39  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:55:39  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:55:40  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:55:40  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:55:43  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:55:43  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:55:44  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:55:44  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:55:46  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:55:46  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:56:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:56:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:56:07  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:56:07  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:56:10  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:56:10  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:56:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:56:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:56:27  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:56:27  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 07:56:31  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 07:56:31  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 08:23:53  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 08:23:53  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 08:23:54  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 08:23:54  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 08:23:56  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 08:23:56  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 08:23:57  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 08:23:57  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 08:23:59  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 08:23:59  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 08:24:00  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 08:24:00  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 08:24:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 08:24:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 08:24:10  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 08:24:10  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:05:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:05:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:05:55  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:05:55  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:05:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:05:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:06:03  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:06:03  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:06:06  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:06:06  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:06:10  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:06:10  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:03  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:03  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:09  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:09  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:11  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:11  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:13  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:13  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:14  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:14  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:15  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:15  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:17  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:17  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:21  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:21  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:34  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:34  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:36  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:36  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:39  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:39  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:49  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:49  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:50  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:50  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:08:55  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:08:55  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:10:40  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:10:40  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:54:44  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:54:44  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:54:44  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:54:44  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:54:50  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:54:50  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:54:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:54:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:55:42  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:55:42  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:55:44  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:55:44  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:55:49  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:55:49  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:55:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:55:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:04  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:04  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:06  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:06  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:10  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:10  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:13  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:13  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:19  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:19  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:23  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:23  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:26  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:26  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:30  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:30  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:37  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:37  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:39  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:39  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:42  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:42  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:45  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:45  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:47  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:47  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:48  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:48  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:53  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:53  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:57  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:57  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:56:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:56:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:57:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:57:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:57:06  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:57:06  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:58:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:58:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:58:37  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:58:37  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:58:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:58:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:59:03  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:59:03  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:59:42  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:59:42  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:59:47  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:59:47  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:59:50  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:59:51  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:59:53  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:59:53  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 09:59:54  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 09:59:54  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:00:00  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:00:00  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:00:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:00:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:00:24  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:00:24  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:00:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:00:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:00:32  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:00:32  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:44:24  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:44:24  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:44:45  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:44:45  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:44:49  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:44:49  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:44:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:44:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:44:57  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:44:57  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:44:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:44:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:45:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:45:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:45:08  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:45:08  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:45:19  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:45:19  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:45:27  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:45:27  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:45:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:45:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:45:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:45:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:45:34  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:45:34  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:46:15  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:46:15  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:46:57  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:46:57  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:01  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:01  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:06  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:06  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:09  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:09  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:14  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:14  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:15  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:15  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:17  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:17  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:18  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:18  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:24  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:24  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:27  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:27  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:29  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:29  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:34  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:34  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:37  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:37  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:42  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:42  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:47:45  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:47:45  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:49:32  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:49:32  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:49:36  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:49:36  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:49:41  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:49:41  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:49:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:49:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:50:35  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:50:35  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:50:48  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:50:48  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:50:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:50:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:51:23  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:51:23  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:51:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:51:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:51:27  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:51:27  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:51:36  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:51:36  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:51:51  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:51:51  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-12 10:53:09  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-12 10:53:09  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:12:06  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:12:06  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:21:18  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:21:18  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:21:19  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:21:19  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:21:24  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:21:24  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:21:28  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:21:28  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:21:47  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:21:47  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:21:55  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:21:55  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:21:58  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:21:58  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:22:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:22:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:22:04  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:22:04  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:22:10  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:22:10  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:22:11  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:22:11  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:22:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:22:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:23:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:23:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:23:51  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:23:51  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:24:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:24:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:25:04  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:25:04  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:25:06  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:25:06  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:25:11  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:25:11  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:25:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:25:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:25:30  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:25:30  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:25:48  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:25:48  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:25:55  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:25:55  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:25:59  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:25:59  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:26:02  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:26:02  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:29:25  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:29:25  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:31:09  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:31:09  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:31:10  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:31:10  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:31:14  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:31:14  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:32:19  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:32:19  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:32:24  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:32:24  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:32:31  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:32:31  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:32:43  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:32:43  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:34:00  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:34:00  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:34:04  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:34:04  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:34:16  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:34:16  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:34:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:34:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:34:35  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:34:35  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:35:43  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:35:43  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:36:49  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:36:49  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:44:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:44:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:44:52  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:44:52  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:57:22  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:57:22  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:57:26  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:57:26  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:57:33  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:57:33  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:58:06  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:58:06  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:58:12  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:58:12  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:58:38  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:58:38  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:58:41  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:58:41  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:58:44  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:58:44  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:59:31  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:59:31  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:59:37  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:59:37  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:59:44  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:59:44  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 04:59:46  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 04:59:46  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 05:01:04  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 05:01:04  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 05:02:23  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 05:02:23  :  [32minfo[39m  :  [32mserver running on 5000[39m
+2022-10-13 05:03:14  :  [32minfo[39m  :  [32mDB Connected .........[39m
+2022-10-13 05:03:14  :  [32minfo[39m  :  [32mserver running on 5000[39m

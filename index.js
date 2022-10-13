@@ -28,6 +28,8 @@ app.use(express.urlencoded({extended:true}));
 
 //routes
 app.use("/admin",require('./routes/admin.routes'));
+app.use("/",require('./routes/auth.routes'));
+
 
 
 
