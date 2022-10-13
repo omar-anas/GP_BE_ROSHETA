@@ -1,8 +1,6 @@
 const db = require('../DB/exectuemysql');
 const helper = require('../DB/helper')
 const config = require('../DB/mysqlconfig');
-
-
 class DoctorController {
 
 static getAllDoctors = async (req,res) =>{
@@ -127,7 +125,7 @@ static dotcorLogin = async (req,res)=>{
         )
         
         const data = helper.emptyOrRows(rows);
-        
+
     
         res.json({data , type:"Doctor"})
         

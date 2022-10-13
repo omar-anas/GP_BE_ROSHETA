@@ -1,3 +1,6 @@
+const db = require('../DB/exectuemysql');
+const helper = require('../DB/helper')
+const config = require('../DB/mysqlconfig');
 class PatientController {
     static getAllPatients = async (req,res) =>{
     try {
@@ -48,19 +51,22 @@ static getPatient = async (req,res) =>{
 static addPatient =async (req,res)=>{
     const patient = req.body
         try {
-            let PATIENT_ADMIN_ID_V = patient.ADMIN_ID
-            let PATIENT_CLINC_ID_V = patient.CLINC_ID
+            
             let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME
             let PATIENT_LAST_NAME_V = patient.PATIENT_LAST_NAME
             let PATIENT_EMAIL_V = req.body.PATIENT_EMAIL
-            let ADDRESS_V = patient.ADDRESS
-            let GENDER_V = req.body.GENDER
+            let PATIENT_PASS_V = req.body.PATIENT_PASSWORD
+            let PATIENT_ADDRESS_V = patient.PATIENT_ADDRESS
+            let PATIENT_GENDER_V = req.body.PATIENT_GENDER
             let DOB_V = req.body.DOB
-            let SPECIALIZATION_V = req.body.SPECIALIZATION
-            let PHONE_V = req.body.PHONE
+            let PATIENT_WEIGHT_V = req.body.PATIENT_WEIGHT
+            let PATIENT_HEIGHT_V = req.body.PATIENT_HEIGHT
+
+           
+            const HASHED_PASSWORD_V =await helper.hashingPassword(PATIENT_PASS_V);
 
             const rows = await db.query(
-                `call ADD_NEW_PATIENT(${PATIENT_ADMIN_ID_V},${PATIENT_CLINC_ID_V},'${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}','${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
+                `call ADD_NEW_PATIENT('${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${HASHED_PASSWORD_V},'${PATIENT_ADDRESS_V}','${PATIENT_GENDER_V}','${DOB_V}','${PATIENT_WEIGHT_V}','${PATIENT_HEIGHT_V}')`
                 );
                 const data = helper.emptyOrRows(rows);
                 res.json({ message: "Success PATIENT IS ADDED", data });
@@ -75,20 +81,17 @@ static addPatient =async (req,res)=>{
             const patient = req.body
             try {
                 let PATIENT_ID_V = req.params.id
-                let PATIENT_STATUS_V = patient.STATUS
-                let PATIENT_ADMIN_ID_V = patient.ADMIN_ID
-                let PATIENT_CLINC_ID_V = patient.CLINC_ID
                 let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME
                 let PATIENT_LAST_NAME_V = patient.PATIENT_LAST_NAME
                 let PATIENT_EMAIL_V = req.body.PATIENT_EMAIL
-                let ADDRESS_V = patient.ADDRESS
-                let GENDER_V = req.body.GENDER
+                let PATIENT_ADDRESS_V = patient.PATIENT_ADDRESS
+                let PATIENT_GENDER_V = req.body.PATIENT_GENDER
                 let DOB_V = req.body.DOB
-                let SPECIALIZATION_V = req.body.SPECIALIZATION
-                let PHONE_V = req.body.PHONE
+                let PATIENT_WEIGHT_V = req.body.PATIENT_WEIGHT
+                let PATIENT_HEIGHT_V = req.body.PATIENT_HEIGHT
 
                 const rows = await db.query(
-                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_STATUS_V}',${PATIENT_ADMIN_ID_V},${PATIENT_CLINC_ID_V},'${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}','${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
+                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_STATUS_V}',${PATIENT_ADMIN_ID_V},${PATIENT_CLINC_ID_V},'${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}','${PATIENT_ADDRESS_V}','${PATIENT_GENDER_V}','${DOB_V}','${PATIENT_HEIGHT_V}')`
                 );
                 const data = helper.emptyOrRows(rows);
                 res.json({ message: "Success PATIENT IS MODIFIED", data });

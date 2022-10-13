@@ -21,7 +21,7 @@ function getOffset(currentPage = 1, listPerPage) {
   }
 
   const doctorEmailGenerator =(FN , LN )=>{
-    const signature = "Rosheta.com"
+    const signature = "Roshetty.com"
     const randomNum  = Math.floor(Math.random() * 100);
     const email =`${FN}_${LN}${randomNum}@${signature}` 
     return email
