@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+
 function getOffset(currentPage = 1, listPerPage) {
     return (currentPage - 1) * [listPerPage];
   }
@@ -21,7 +22,7 @@ function getOffset(currentPage = 1, listPerPage) {
   }
 
   const doctorEmailGenerator =(FN , LN )=>{
-    const signature = "Roshetty.com"
+    const signature = "Rosheta.com"
     const randomNum  = Math.floor(Math.random() * 100);
     const email =`${FN}_${LN}${randomNum}@${signature}` 
     return email
@@ -32,7 +33,7 @@ function getOffset(currentPage = 1, listPerPage) {
     const salt = process.env.SALT
                 
     let HASHED_PASSWORD_V = await bcrypt.hash(password, salt);
-                
+
     HASHED_PASSWORD_V = `'${HASHED_PASSWORD_V}'`
     
     return HASHED_PASSWORD_V;

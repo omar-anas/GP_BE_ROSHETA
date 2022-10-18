@@ -123,10 +123,11 @@ static dotcorLogin = async (req,res)=>{
         const rows = await db.query(
             `call LOGIN_DOCTOR('${Doctor_Email_V}',${HASHED_PASSWORD_V})`
         )
+
         
         const data = helper.emptyOrRows(rows);
 
-    
+        console.log(data)
         res.json({data , type:"Doctor"})
         
     } catch (error) {
