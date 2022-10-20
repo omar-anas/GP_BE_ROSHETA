@@ -1,6 +1,8 @@
 const db = require('../DB/exectuemysql');
 const helper = require('../DB/helper')
 const config = require('../DB/mysqlconfig');
+
+require('dotenv');
 class DoctorController {
 
 static getAllDoctors = async (req,res) =>{
@@ -113,27 +115,6 @@ static addDoctor =async (req,res)=>{
 }
 
 
-static dotcorLogin = async (req,res)=>{
-    try {
-        let Doctor_Email_V = req.body.EMAIL;
-        let DOCTOR_PASS_V = req.body.PASSWORD;
-    
-        const HASHED_PASSWORD_V =await helper.hashingPassword(DOCTOR_PASS_V);
-    
-        const rows = await db.query(
-            `call LOGIN_DOCTOR('${Doctor_Email_V}',${HASHED_PASSWORD_V})`
-        )
-
-        
-        const data = helper.emptyOrRows(rows);
-
-        console.log(data)
-        res.json({data , type:"Doctor"})
-        
-    } catch (error) {
-        res.json({ message: "failed Process", error: error.message });
-    }
-}
 
 
 }

@@ -104,9 +104,7 @@ static addPatient =async (req,res)=>{
         }
 
 
-    static PatientLogin =(req,res)=>{
-        res.json({data:req.body , type:"Patient"})
-    }
+    
     }
     
     module.exports = PatientController
