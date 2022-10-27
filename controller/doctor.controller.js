@@ -50,7 +50,6 @@ static getDoctor = async (req,res) =>{
 }
 
 
-
 static addDoctor =async (req,res)=>{
     const doctor = req.body
         try {
