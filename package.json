@@ -17,6 +17,9 @@
     "helmet": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
+    "shortid": "^2.2.16",
+    "truffle-contract": "^4.0.31",
+    "web3": "^1.8.2",
     "winston": "^3.8.2"
   },
   "devDependencies": {

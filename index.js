@@ -4,6 +4,12 @@ const app = express();
 const helmet = require('helmet');
 require('dotenv').config();
 
+
+//blockchain libraries
+const Web3 = require('web3');
+const contract = require('truffle-contract');
+
+
 //utils
 const logger = require('./Utils/logger');
 
