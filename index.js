@@ -23,6 +23,7 @@ app.use(cors());
 
 
 //middleware for cookies
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
@@ -31,6 +32,7 @@ app.use(express.urlencoded({extended:true}));
 
 //routes
 app.use("/admin",require('./routes/admin.routes'));
+app.use("/EHR",require('./routes/EHR.routes'))
 app.use("/",require('./routes/auth.routes'));
 
 
@@ -41,6 +43,7 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, async () => {
     try {
+        truffle_connect.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
         logger.info('DB Connected .........')
         logger.info(`server running on ${port}`)
     } catch (error) {
