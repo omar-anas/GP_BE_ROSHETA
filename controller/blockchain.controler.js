@@ -6,7 +6,9 @@ const truffle_connect = require('../connection/app.js');
 class blockchainController {
 
         static getAccounts = (req, res) => {
+            console.log("DDDDDDDDDDDDDDDDDDDD")
         console.log("**** GET /getAccounts ****");
+        
         truffle_connect.start(function (answer) {
           res.send(answer);
         })

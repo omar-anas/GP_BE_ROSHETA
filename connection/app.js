@@ -2,6 +2,7 @@ const contract = require('truffle-contract');
 const metacoin_artifact = require('../build/contracts/MetaCoin.json');
 var MetaCoin = contract(metacoin_artifact);
 
+
 module.exports = {
   start: function(callback) {
     var self = this;
