@@ -2,7 +2,8 @@ const router = require("express").Router();
 const blockchainController = require('../controller/blockchain.controler');
 
 router.get('/getAccounts', blockchainController.getAccounts);
-  
+
+
 //   router.post('/getBalance', (req, res) => {
 //     console.log("**** GET /getBalance ****");
 //     console.log(req.body);

@@ -1,6 +1,10 @@
 const contract = require('truffle-contract');
+
 const metacoin_artifact = require('../build/contracts/MetaCoin.json');
 var MetaCoin = contract(metacoin_artifact);
+
+const EHR_artifact = require('../build/contracts/EHR.json');
+var EHR = contract(EHR_artifact);
 
 
 module.exports = {
@@ -27,6 +31,8 @@ module.exports = {
       callback(self.accounts);
     });
   },
+
+
   refreshBalance: function(account, callback) {
     var self = this;
 
@@ -44,6 +50,8 @@ module.exports = {
         callback("Error 404");
     });
   },
+
+  
   sendCoin: function(amount, sender, receiver, callback) {
     var self = this;
 
