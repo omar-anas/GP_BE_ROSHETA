@@ -86,13 +86,7 @@ contract EHR {
 
     function getRecords(
         address _patientId
-    )
-        public
-        view
-        senderExists
-        patientExists(_patientId)
-        returns (Record[] memory)
-    {
+    ) public view senderExists patientExists(_patientId) returns (Record[] memory) {
         return patients[_patientId].records;
     }
 

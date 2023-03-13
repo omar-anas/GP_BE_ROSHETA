@@ -2,23 +2,54 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract Migrations {
-  address public owner;
-  uint public last_completed_migration;
+    address private owner;
+    uint public last_completed_migration;
 
-  modifier restricted() {
-    if (msg.sender == owner) _;
-  }
+    // event for EVM logging
+    event OwnerSet(address indexed oldOwner, address indexed newOwner);
 
-  constructor() public {
-    owner = msg.sender;
-  }
+    // modifier to check if caller is owner
+    modifier restricted() {
+        // If the first argument of 'require' evaluates to 'false', execution terminates and all
+        // changes to the state and to Ether balances are reverted.
+        // This used to consume all gas in old EVM versions, but not anymore.
+        // It is often a good idea to use 'require' to check if functions are called correctly.
+        // As a second argument, you can also provide an explanation about what went wrong.
+        require(msg.sender == owner, "Caller is not owner");
+        _;
+    }
 
-  function setCompleted(uint completed) public restricted {
-    last_completed_migration = completed;
-  }
+    /**
+     * @dev Set contract deployer as owner
+     */
+    constructor() {
+        owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
+        emit OwnerSet(address(0), owner);
+    }
 
-  function upgrade(address new_address) public restricted {
-    Migrations upgraded = Migrations(new_address);
-    upgraded.setCompleted(last_completed_migration);
-  }
+    /**
+     * @dev Change owner
+     * @param newOwner address of new owner
+     */
+    function changeOwner(address newOwner) public restricted {
+        emit OwnerSet(owner, newOwner);
+        owner = newOwner;
+    }
+
+    /**
+     * @dev Return owner address
+     * @return address of owner
+     */
+    function getOwner() external view returns (address) {
+        return owner;
+    }
+
+    function setCompleted(uint completed) public restricted {
+        last_completed_migration = completed;
+    }
+
+    function upgrade(address new_address) public restricted {
+        Migrations upgraded = Migrations(new_address);
+        upgraded.setCompleted(last_completed_migration);
+    }
 }

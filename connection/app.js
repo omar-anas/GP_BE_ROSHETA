@@ -40,7 +40,7 @@ module.exports = {
                 return meta.addPatient(patientId, { from: sender });
             })
             .then(function () {
-                self.getPatientExists(patientId, function (answer) {
+                self.getPatientExists(sender, patientId, function (answer) {
                     callback(answer);
                 });
             })
@@ -84,7 +84,7 @@ module.exports = {
                 return meta.addRecord(cid, fileName, patientId, { from: sender });
             })
             .then(function () {
-                self.getRecords(patientId, function (answer) {
+                self.getRecords(sender, patientId, function (answer) {
                     callback(answer);
                 });
             })
@@ -136,7 +136,7 @@ module.exports = {
             })
     },
 
-    getPatientExists: function (patientId, callback) {
+    getPatientExists: function (sender, patientId, callback) {
         var self = this;
 
         // Bootstrap the EHR abstraction for Use.
@@ -146,7 +146,7 @@ module.exports = {
         EHR.deployed()
             .then(function (instance) {
                 meta = instance;
-                return meta.getPatientExists(patientId);
+                return meta.getPatientExists(patientId, { from: sender });
             })
             .then(function (value) {
                 callback(value);
