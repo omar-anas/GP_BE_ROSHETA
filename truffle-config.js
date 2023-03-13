@@ -46,6 +46,9 @@
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
 
+// Allows us to use ES6 in our migrations and tests.
+require('babel-register')
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -57,19 +60,23 @@ module.exports = {
    * $ truffle test --network <network-name>
    */
 
+  dashboard: {
+    port: 24012,
+  },
+
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
     // You should run a client (like ganache, geth, or parity) in a separate terminal
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
-    //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
-    //
+    
+    development: {
+      host: "127.0.0.1",     // Localhost (default: localhost)
+      port: 7545,            // Standard Ethereum port (default: 7545)
+      network_id: "*",       // Any network (default: 5777)
+    },
+    
     // An additional network, but with some advanced options…
     // advanced: {
     //   port: 8777,             // Custom port

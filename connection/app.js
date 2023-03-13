@@ -1,74 +1,160 @@
 const contract = require('truffle-contract');
 
-const metacoin_artifact = require('../build/contracts/MetaCoin.json');
-var MetaCoin = contract(metacoin_artifact);
-
 const EHR_artifact = require('../build/contracts/EHR.json');
 var EHR = contract(EHR_artifact);
 
-
 module.exports = {
-  start: function(callback) {
-    var self = this;
+    start: function (callback) {
+        var self = this;
 
-    // Bootstrap the MetaCoin abstraction for Use.
-    MetaCoin.setProvider(self.web3.currentProvider);
+        // Bootstrap the EHR abstraction for Use.
+        EHR.setProvider(self.web3.currentProvider);
 
-    // Get the initial account balance so it can be displayed.
-    self.web3.eth.getAccounts(function(err, accs) {
-      if (err != null) {
-        console.log("There was an error fetching your accounts.");
-        return;
-      }
+        // Get the initial account balance so it can be displayed.
+        self.web3.eth.getAccounts(function (err, accs) {
+            if (err != null) {
+                console.log("There was an error fetching your accounts.");
+                return;
+            }
 
-      if (accs.length == 0) {
-        console.log("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
-        return;
-      }
-      self.accounts = accs;
-      self.account = self.accounts[2];
+            if (accs.length == 0) {
+                console.log("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
+                return;
+            }
+            self.accounts = accs;
 
-      callback(self.accounts);
-    });
-  },
+            callback(self.accounts);
+        });
+    },
 
+    addPatient: function (sender, patientId, callback) {
+        var self = this;
 
-  refreshBalance: function(account, callback) {
-    var self = this;
+        // Bootstrap the EHR abstraction for Use.
+        EHR.setProvider(self.web3.currentProvider);
 
-    // Bootstrap the MetaCoin abstraction for Use.
-    MetaCoin.setProvider(self.web3.currentProvider);
+        var meta;
+        EHR.deployed()
+            .then(function (instance) {
+                meta = instance;
+                return meta.addPatient(patientId, { from: sender });
+            })
+            .then(function () {
+                self.getPatientExists(patientId, function (answer) {
+                    callback(answer);
+                });
+            })
+            .catch(function (e) {
+                console.log(e);
+                callback("ERROR 404");
+            })
+    },
 
-    var meta;
-    MetaCoin.deployed().then(function(instance) {
-      meta = instance;
-      return meta.getBalance.call(account, {from: account});
-    }).then(function(value) {
-        callback(value.valueOf());
-    }).catch(function(e) {
-        console.log(e);
-        callback("Error 404");
-    });
-  },
+    addDoctor: function (sender, callback) {
+        var self = this;
 
-  
-  sendCoin: function(amount, sender, receiver, callback) {
-    var self = this;
+        // Bootstrap the EHR abstraction for Use.
+        EHR.setProvider(self.web3.currentProvider);
 
-    // Bootstrap the MetaCoin abstraction for Use.
-    MetaCoin.setProvider(self.web3.currentProvider);
+        var meta;
+        EHR.deployed()
+            .then(function (instance) {
+                meta = instance;
+                return meta.addDoctor({ from: sender });
+            })
+            .then(address => {
+                callback(address)
+            })
+            .catch(function (e) {
+                console.log(e);
+                callback("ERROR 404");
+            })
+    },
 
-    var meta;
-    MetaCoin.deployed().then(function(instance) {
-      meta = instance;
-      return meta.sendCoin(receiver, amount, {from: sender});
-    }).then(function() {
-      self.refreshBalance(sender, function (answer) {
-        callback(answer);
-      });
-    }).catch(function(e) {
-      console.log(e);
-      callback("ERROR 404");
-    });
-  }
+    addRecord: function (sender, cid, fileName, patientId, callback) {
+        var self = this;
+
+        // Bootstrap the EHR abstraction for Use.
+        EHR.setProvider(self.web3.currentProvider);
+
+        var meta;
+        EHR.deployed()
+            .then(function (instance) {
+                meta = instance;
+                return meta.addRecord(cid, fileName, patientId, { from: sender });
+            })
+            .then(function () {
+                self.getRecords(patientId, function (answer) {
+                    callback(answer);
+                });
+            })
+            .catch(function (e) {
+                console.log(e);
+                callback("ERROR 404");
+            })
+    },
+
+    getRecords: function (sender, patientId, callback) {
+        var self = this;
+
+        // Bootstrap the EHR abstraction for Use.
+        EHR.setProvider(self.web3.currentProvider);
+
+        var meta;
+        EHR.deployed()
+            .then(function (instance) {
+                meta = instance;
+                return meta.getRecords(patientId, { from: sender });
+            })
+            .then(function (value) {
+                callback(value);
+            })
+            .catch(function (e) {
+                console.log(e);
+                callback("ERROR 404");
+            })
+    },
+
+    getSenderRole: function (sender, callback) {
+        var self = this;
+
+        // Bootstrap the EHR abstraction for Use.
+        EHR.setProvider(self.web3.currentProvider);
+
+        var meta;
+        EHR.deployed()
+            .then(function (instance) {
+                meta = instance;
+                return meta.getSenderRole({ from: sender });
+            })
+            .then(function (value) {
+                callback(value);
+            })
+            .catch(function (e) {
+                console.log(e);
+                callback("ERROR 404");
+            })
+    },
+
+    getPatientExists: function (patientId, callback) {
+        var self = this;
+
+        // Bootstrap the EHR abstraction for Use.
+        EHR.setProvider(self.web3.currentProvider);
+
+        var meta;
+        EHR.deployed()
+            .then(function (instance) {
+                meta = instance;
+                return meta.getPatientExists(patientId);
+            })
+            .then(function (value) {
+                callback(value);
+            })
+            .catch(function (e) {
+                console.log(e);
+                callback("ERROR 404");
+            })
+    },
+
 }

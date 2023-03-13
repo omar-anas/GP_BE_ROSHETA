@@ -6,18 +6,15 @@ require('dotenv');
 class authController {
 
     static login_Handler = (req, res) => {
-        const myRe = /(@Rosheta.com)/g;
+        const myRe = /(@mobicare.com)/g;
         const flag = myRe.test(req.body.EMAIL);
-        let userType
-        
+
         if (flag) {
             authController.dotcorLogin(req, res);
         } else {
             authController.PatientLogin(req, res);
         }
-
     }
-
 
     static AdminLogin = async (req, res) => {
         try {
@@ -26,69 +23,57 @@ class authController {
             let accessToken
             let refreshToken
             const HASHED_PASSWORD_V = await helper.hashingPassword(Admin_PASS_V);
-            
+
             const rows = await db.query(
                 `call LOGIN_ADMIN('${Admin_Email_V}',${HASHED_PASSWORD_V})`
-                )
-                
-                
-                let data = helper.emptyOrRows(rows);
+            )
+
+            let data = helper.emptyOrRows(rows);
             data = data[0][0];
             if (data) {
-                accessToken = await helper.generateAccessToken({ ID:data.ID,Admin_Email_V, role: "ADMIN" });
-                refreshToken =await jwt.sign({ ID:data.ID,Admin_Email_V, role: "ADMIN" }, process.env.REFRESH_TOKEN_SECRET);
-                
+                accessToken = await helper.generateAccessToken({ ID: data.ID, Admin_Email_V, role: "ADMIN" });
+                refreshToken = await jwt.sign({ ID: data.ID, Admin_Email_V, role: "ADMIN" }, process.env.REFRESH_TOKEN_SECRET);
+
                 const result = await db.query(
-                        
-                        `call UPDATE_ADMIN_REFRESHTOKEN(${data.ID},'${refreshToken}')`
-                        
-                            
-                    )
+                    `call UPDATE_ADMIN_REFRESHTOKEN(${data.ID},'${refreshToken}')`
+                )
 
             } else {
                 throw new Error("wrong email or password")
             }
             res.json({ accessToken, refreshToken, message: "sucessfull authentication" })
-           
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
         }
     }
 
-    static refrshAccessToken = async (req,res) =>{
+    static refrshAccessToken = async (req, res) => {
         try {
             let result
             const TOKEN = req.body.token
-            if(!TOKEN){
+            if (!TOKEN) {
                 throw new Error("REFRESH TOKEN MISSING")
             }
-            const decoded = jwt.verify(TOKEN,process.env.REFRESH_TOKEN_SECRET);
+            const decoded = jwt.verify(TOKEN, process.env.REFRESH_TOKEN_SECRET);
 
-            
             result = await db.query(
-                        
                 `call GET_${decoded.role}_REFRESHTOKEN(${decoded.ID})`
-                    
             );
-            
-            const Refresh_Token_Value = result[0][0]['Refresh_Token_Value'];
-            
 
-            if(Refresh_Token_Value != TOKEN){
+            const Refresh_Token_Value = result[0][0]['Refresh_Token_Value'];
+
+            if (Refresh_Token_Value != TOKEN) {
                 throw new Error("REFRESH TOKEN IS NOT VALID");
             }
-            
-            
-            const accesstoken = await helper.generateAccessToken({ID:decoded.ID,Admin_Email_V:decoded.Admin_Email_V,role:decoded.role});
+
+            const accesstoken = await helper.generateAccessToken({ ID: decoded.ID, Admin_Email_V: decoded.Admin_Email_V, role: decoded.role });
             res.json({ accesstoken, message: "successful authentication" })
 
-            
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
         }
     }
-
 
     static dotcorLogin = async (req, res) => {
         try {
@@ -102,20 +87,16 @@ class authController {
                 `call LOGIN_DOCTOR('${Doctor_Email_V}',${HASHED_PASSWORD_V})`
             )
 
-
             let data = helper.emptyOrRows(rows);
             data = data[0][0];
-            
+
             if (data) {
-                accessToken = await helper.generateAccessToken({ ID:data.ID,Doctor_Email_V, role: "DOCTOR" });
-                refreshToken =await jwt.sign({ ID:data.ID,Doctor_Email_V, role: "DOCTOR" }, process.env.REFRESH_TOKEN_SECRET);
-                
+                accessToken = await helper.generateAccessToken({ ID: data.ID, Doctor_Email_V, role: "DOCTOR" });
+                refreshToken = await jwt.sign({ ID: data.ID, Doctor_Email_V, role: "DOCTOR" }, process.env.REFRESH_TOKEN_SECRET);
+
                 const result = await db.query(
-                        
-                        `call UPDATE_DOCTOR_REFRESHTOKEN(${data.ID},'${refreshToken}')`
-                        
-                            
-                    )
+                    `call UPDATE_DOCTOR_REFRESHTOKEN(${data.ID},'${refreshToken}')`
+                )
 
             } else {
                 throw new Error("wrong email or password")
@@ -127,53 +108,39 @@ class authController {
         }
     }
 
-
-    static PatientLogin = async  (req, res) => {
+    static PatientLogin = async (req, res) => {
         try {
-            
             let Patient_Email_V = req.body.EMAIL;
             let Patient_PASS_V = req.body.PASSWORD;
             let accessToken
             let refreshToken
-            
+
             const HASHED_PASSWORD_V = await helper.hashingPassword(Patient_PASS_V);
-            
+
             const rows = await db.query(
                 `call LOGIN_PATIENT('${Patient_Email_V}',${HASHED_PASSWORD_V})`
-                )
-                
-                
-            
+            )
+
             let data = helper.emptyOrRows(rows);
-            
-            
             data = data[0][0];
-            
-            
+
             if (data) {
-                
-                accessToken = await helper.generateAccessToken({ ID:data.ID,Patient_Email_V, role: "PATIENT" });
-                refreshToken =await jwt.sign({ ID:data.ID ,Patient_Email_V, role: "PATIENT" }, process.env.REFRESH_TOKEN_SECRET);
-                
+                accessToken = await helper.generateAccessToken({ ID: data.ID, Patient_Email_V, role: "PATIENT" });
+                refreshToken = await jwt.sign({ ID: data.ID, Patient_Email_V, role: "PATIENT" }, process.env.REFRESH_TOKEN_SECRET);
+
                 const result = await db.query(
-                        
-                        `call UPDATE_PATIENT_REFRESHTOKEN(${data.ID},'${refreshToken}')`
-                        
-                            
-                    )
+                    `call UPDATE_PATIENT_REFRESHTOKEN(${data.ID},'${refreshToken}')`
+                )
 
             } else {
                 throw new Error("wrong email or password")
             }
             res.json({ accessToken, refreshToken, message: "sucessfull authentication" })
-           
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
         }
     }
-
-
 }
 
 module.exports = authController
