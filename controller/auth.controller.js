@@ -6,7 +6,7 @@ require('dotenv');
 class authController {
 
     static login_Handler = (req, res) => {
-        const myRe = /(@Rosheta.com)/g;
+        const myRe = /(@mobicare.com)/g;
         const flag = myRe.test(req.body.EMAIL);
         let userType
         
@@ -166,7 +166,7 @@ class authController {
                 throw new Error("wrong email or password")
             }
             res.json({ accessToken, refreshToken, message: "sucessfull authentication" })
-           
+            
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
