@@ -31,7 +31,8 @@ app.listen(port, async () => {
     try {
         // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
         truffle_connect.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
-        logger.info('DB Connected .........')
+        logger.info('database connected .........')
+        logger.info('blockchain connected .........')
         logger.info(`server running on ${port}`)
 
     } catch (error) {

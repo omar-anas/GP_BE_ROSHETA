@@ -22,6 +22,7 @@ contract EHR {
     mapping(address => Patient) public patients;
     mapping(address => Doctor) public doctors;
 
+    // events
     event PatientAdded(address patientId);
     event DoctorAdded(address doctorId);
     event RecordAdded(string cid, address patientId, address doctorId);

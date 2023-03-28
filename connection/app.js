@@ -3,6 +3,7 @@ const contract = require('truffle-contract');
 const EHR_artifact = require('../build/contracts/EHR.json');
 var EHR = contract(EHR_artifact);
 
+
 module.exports = {
     start: function (callback) {
         var self = this;
@@ -104,7 +105,29 @@ module.exports = {
         EHR.deployed()
             .then(function (instance) {
                 meta = instance;
-                return meta.getRecords(patientId, { from: sender });
+                self.web3.eth.getBlock(8, true)
+                    .then(res => self.web3.eth.getTransactionReceipt(res.transactions[0].hash)
+                        .then(console.log));
+
+                self.web3.eth.getBlock(8, true)
+                    .then(res => self.web3.eth.getTransactionReceipt(res.transactions[0].hash)
+                        .then(data => console.log(
+                            self.web3.utils.isHex(data.transactionHash)
+                                ? self.web3.utils.BN(
+                                    '0x00000000000000000000000000000000000000000000000000000000000000600000000000000000000000006276d3bfeaf90abfda5fa22c1578615e0687e94b000000000000000000000000f979c6a2451a6e483b51b9395cdfe9e8fc518d4100000000000000000000000000000000000000000000000000000000000000033173740000000000000000000000000000000000000000000000000000000000'
+                                )
+                                : data.transactionHash
+                        ))
+                    );
+
+                return self.web3.eth.getBlock(8, true)
+                    .then(res => self.web3.eth.getTransactionReceipt(res.transactions[0].hash)
+                        .then(data => self.web3.utils.isHex(data.transactionHash)
+                            ? self.web3.utils.BN(
+                                '0x00000000000000000000000000000000000000000000000000000000000000600000000000000000000000006276d3bfeaf90abfda5fa22c1578615e0687e94b000000000000000000000000f979c6a2451a6e483b51b9395cdfe9e8fc518d4100000000000000000000000000000000000000000000000000000000000000033173740000000000000000000000000000000000000000000000000000000000'
+                            )
+                            : data.transactionHash)
+                    );
             })
             .then(function (value) {
                 callback(value);

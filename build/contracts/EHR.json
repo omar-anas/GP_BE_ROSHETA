@@ -69,8 +69,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -89,8 +88,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -179,8 +177,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -193,8 +190,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -213,8 +209,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"doctorId\",\"type\":\"address\"}],\"name\":\"DoctorAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"patientId\",\"type\":\"address\"}],\"name\":\"PatientAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"cid\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"patientId\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"doctorId\",\"type\":\"address\"}],\"name\":\"RecordAdded\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"addDoctor\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_patientId\",\"type\":\"address\"}],\"name\":\"addPatient\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_cid\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_fileName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_patientId\",\"type\":\"address\"}],\"name\":\"addRecord\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"doctors\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"id\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_patientId\",\"type\":\"address\"}],\"name\":\"getPatientExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_patientId\",\"type\":\"address\"}],\"name\":\"getRecords\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"cid\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fileName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"patientId\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"doctorId\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"timeAdded\",\"type\":\"uint256\"}],\"internalType\":\"struct EHR.Record[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getSenderRole\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"patients\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"id\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/EHR.sol\":\"EHR\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/EHR.sol\":{\"keccak256\":\"0x986bd5ec449dc518374e2cf918a8f7bf565fbf4cd426d385891deb05bfba9808\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://fbedf6c829bd22e8c7ef5a6d2b1caa33ebbf0a2c03059168915271d322d0e2f8\",\"dweb:/ipfs/QmZRyeJmPNJn3F6FAFaG6NQZrvHyLzQP6pKskyWQpPqJXn\"]}},\"version\":1}",
@@ -13861,13 +13856,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xF66E1Da1EDb01899D7a8c1525C5dfF3126A14159",
-      "transactionHash": "0x06a4ece3471bc0d6ed44de3ee744f4a85256bd5e08087b2ed63a3bbc08db8541"
+      "address": "0x5893a9d396D7191d5EAe9754F69bBD9AC0a6E8C7",
+      "transactionHash": "0x1a0512a911d900cd6ee2a17d0c05411e6bd7a2a7d56d476e99b79c03af626401"
     }
   },
   "schemaVersion": "3.4.12",
-  "updatedAt": "2023-03-13T22:04:13.181Z",
-  "networkType": "ethereum",
+  "updatedAt": "2023-03-25T15:59:43.502Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
