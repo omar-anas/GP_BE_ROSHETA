@@ -1,6 +1,6 @@
 const db = require('../DB/exectuemysql');
 const helper = require('../DB/helper')
-const config = require('../DB/mysqlconfig').default;
+const config = require('../DB/mysqlconfig');
 
 class PatientController {
     static getAllPatients = async (req, res) => {
