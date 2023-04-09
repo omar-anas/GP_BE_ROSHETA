@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `mobicare` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `mobicare`;
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: mobicare
+-- Host: localhost    Database: mobicare
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -235,13 +235,14 @@ CREATE TABLE `sys_doctor` (
   `Email` varchar(45) NOT NULL,
   `Pass` varchar(250) NOT NULL,
   `Address` varchar(45) NOT NULL,
-  `Gender` varchar(15) NOT NULL,
+  `Gender` tinyint NOT NULL,
   `DOB` varchar(10) NOT NULL,
   `Specialization` varchar(45) NOT NULL,
   `Phone` int NOT NULL,
   `Refresh_Token_Value` varchar(450) DEFAULT NULL,
   `Photo` varchar(200) DEFAULT NULL,
   `Bio` varchar(255) DEFAULT NULL,
+  `Vedio` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Email_UNIQUE` (`Email`),
   UNIQUE KEY `ID_UNIQUE` (`ID`),
@@ -256,33 +257,8 @@ CREATE TABLE `sys_doctor` (
 
 LOCK TABLES `sys_doctor` WRITE;
 /*!40000 ALTER TABLE `sys_doctor` DISABLE KEYS */;
-INSERT INTO `sys_doctor` VALUES (16,'Active',1,'test1','test2','test1_test266@Rosheta.com','2541','test3','test3','test3','test3',138141681,NULL,NULL,NULL),(17,'Active',1,'test1','test2','test1_test250@Rosheta.com','2541','test3','test3','test3','test3',138141681,NULL,NULL,NULL),(18,'Active',1,'test1','test2','test1_test257@Rosheta.com','$2b$10$wFUF/Xl6XRhkQU2gJIotHeaQjKOQdBuASChYS3sUVnQB59avOvXhK','test3','test3','test3','test3',138141681,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTgsIkRvY3Rvcl9FbWFpbF9WIjoidGVzdDFfdGVzdDI1N0BSb3NoZXRhLmNvbSIsInJvbGUiOiJET0NUT1IiLCJpYXQiOjE2NjY4NzY5NzB9.3gD364QLYMihY3HM11o1qTIyQgcLJmNDtpjkOf7ijbo',NULL,NULL);
+INSERT INTO `sys_doctor` VALUES (16,'Active',1,'test1','test2','test1_test266@Rosheta.com','2541','test3',0,'test3','test3',138141681,NULL,NULL,NULL,NULL),(17,'Active',1,'test1','test2','test1_test250@Rosheta.com','2541','test3',0,'test3','test3',138141681,NULL,NULL,NULL,NULL),(18,'Active',1,'test1','test2','test1_test257@Rosheta.com','$2b$10$wFUF/Xl6XRhkQU2gJIotHeaQjKOQdBuASChYS3sUVnQB59avOvXhK','test3',0,'test3','test3',138141681,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTgsIkRvY3Rvcl9FbWFpbF9WIjoidGVzdDFfdGVzdDI1N0BSb3NoZXRhLmNvbSIsInJvbGUiOiJET0NUT1IiLCJpYXQiOjE2NjY4NzY5NzB9.3gD364QLYMihY3HM11o1qTIyQgcLJmNDtpjkOf7ijbo',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sys_doctor` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sys_doctor_experiences`
---
-
-DROP TABLE IF EXISTS `sys_doctor_experiences`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sys_doctor_experiences` (
-  `Doctor_ID` int NOT NULL AUTO_INCREMENT,
-  `Doctor_Experiences` varchar(45) NOT NULL,
-  PRIMARY KEY (`Doctor_ID`,`Doctor_Experiences`),
-  KEY `fk_Doctor_Experiences_Doctor1_idx` (`Doctor_ID`),
-  CONSTRAINT `fk_Doctor_Experiences_Doctor1` FOREIGN KEY (`Doctor_ID`) REFERENCES `sys_doctor` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sys_doctor_experiences`
---
-
-LOCK TABLES `sys_doctor_experiences` WRITE;
-/*!40000 ALTER TABLE `sys_doctor_experiences` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sys_doctor_experiences` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -300,13 +276,14 @@ CREATE TABLE `sys_patient` (
   `Email` varchar(45) NOT NULL,
   `Pass` varchar(250) NOT NULL,
   `Address` varchar(45) NOT NULL,
-  `Gender` varchar(15) NOT NULL,
+  `Gender` tinyint NOT NULL,
   `DOB` varchar(10) NOT NULL,
   `Weight` int DEFAULT NULL,
   `Height` int DEFAULT NULL,
   `Refresh_Token_Value` varchar(450) DEFAULT NULL,
   `Photo` varchar(200) DEFAULT NULL,
   `Symptoms` varchar(250) DEFAULT NULL,
+  `Phone` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Email_UNIQUE` (`Email`),
   UNIQUE KEY `ID_UNIQUE` (`ID`)
@@ -319,7 +296,7 @@ CREATE TABLE `sys_patient` (
 
 LOCK TABLES `sys_patient` WRITE;
 /*!40000 ALTER TABLE `sys_patient` DISABLE KEYS */;
-INSERT INTO `sys_patient` VALUES (1,'Active','test1','test2','test@yho.com','$2b$10$wFUF/Xl6XRhkQU2gJIotHeLdFyKraEsteJAr2F/Ea1Hy24AohfCdK','test3','0138141681','test3',1,1,NULL,NULL,NULL),(2,'Active','test1','test2','test@yhoo.com','$2b$10$wFUF/Xl6XRhkQU2gJIotHeaQjKOQdBuASChYS3sUVnQB59avOvXhK','test3','0138141681','test3',1,1,NULL,NULL,NULL),(3,'Active','test1','test2','test@yahoo.com','$2b$10$wFUF/Xl6XRhkQU2gJIotHeaQjKOQdBuASChYS3sUVnQB59avOvXhK','test3','0138141681','test3',1,1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MywiUGF0aWVudF9FbWFpbF9WIjoidGVzdEB5YWhvby5jb20iLCJyb2xlIjoiUEFUSUVOVCIsImlhdCI6MTY2Njg3Njg0NH0.NKtKrx-nuFc-3fNZylRtE9lIAhSCstvsWAnp54qYLWA',NULL,NULL);
+INSERT INTO `sys_patient` VALUES (1,'Active','test1','test2','test@yho.com','$2b$10$wFUF/Xl6XRhkQU2gJIotHeLdFyKraEsteJAr2F/Ea1Hy24AohfCdK','test3',0,'test3',1,1,NULL,NULL,NULL,NULL),(2,'Active','test1','test2','test@yhoo.com','$2b$10$wFUF/Xl6XRhkQU2gJIotHeaQjKOQdBuASChYS3sUVnQB59avOvXhK','test3',0,'test3',1,1,NULL,NULL,NULL,NULL),(3,'Active','test1','test2','test@yahoo.com','$2b$10$wFUF/Xl6XRhkQU2gJIotHeaQjKOQdBuASChYS3sUVnQB59avOvXhK','test3',0,'test3',1,1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MywiUGF0aWVudF9FbWFpbF9WIjoidGVzdEB5YWhvby5jb20iLCJyb2xlIjoiUEFUSUVOVCIsImlhdCI6MTY2Njg3Njg0NH0.NKtKrx-nuFc-3fNZylRtE9lIAhSCstvsWAnp54qYLWA',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sys_patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,28 +328,8 @@ LOCK TABLES `sys_patient_has_doctor` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `sys_patient_phones`
+-- Dumping events for database 'mobicare'
 --
-
-DROP TABLE IF EXISTS `sys_patient_phones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sys_patient_phones` (
-  `Patient_ID` int NOT NULL,
-  `Patient_Phones` int NOT NULL,
-  PRIMARY KEY (`Patient_ID`,`Patient_Phones`),
-  CONSTRAINT `fk_Patient_Phones_Patient1` FOREIGN KEY (`Patient_ID`) REFERENCES `sys_patient` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sys_patient_phones`
---
-
-LOCK TABLES `sys_patient_phones` WRITE;
-/*!40000 ALTER TABLE `sys_patient_phones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sys_patient_phones` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'mobicare'
@@ -383,7 +340,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -429,7 +386,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -457,7 +414,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -510,41 +467,13 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `ADD_NEW_DOCTOR_EXPERIENCES` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`admin`@`%` PROCEDURE `ADD_NEW_DOCTOR_EXPERIENCES`(
-Doctor_ID_V int(11),
-Doctor_Experiences_V  varchar(45)
-)
-BEGIN
-insert into sys_Doctor_Experiences(
-Doctor_ID,
-Doctor_Experiences
-
-)VALUES(
-Doctor_ID_V, 
-Doctor_Experiences_V);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `ADD_NEW_PATIENT` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -554,12 +483,9 @@ L_Name_V  varchar(15),
 Email_V  varchar(45),
 Pass_V  varchar(450),
 Address_V  varchar(45),
+Phone_V varchar(15),
 Gender_V  varchar(15),
-DOB_V  varchar(10),
-Weight_V  int(11),
-Height_V  int(11),
-Photo_V varchar(200),
-Symptoms_V varchar(250)
+DOB_V  varchar(10)
 )
 BEGIN
 insert into sys_Patient(
@@ -568,13 +494,10 @@ F_Name,
 L_Name,
 Email,
 Pass,
-Address, 
+Address,
+Phone, 
 Gender,
-DOB,
-Weight,
-Height,
-Photo,
-Symptoms
+DOB
 
 )VALUES(
 'Active',
@@ -583,12 +506,9 @@ L_Name_V ,
 Email_V ,
 Pass_V,
 Address_V, 
+Phone_V,
 Gender_V ,
-DOB_V,
-Weight_V ,  
-Height_V,
-Photo_V,
-Symptoms_V
+DOB_V
 );
 END ;;
 DELIMITER ;
@@ -602,7 +522,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -624,42 +544,13 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `ADD_NEW_Patient_PHONES` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`admin`@`%` PROCEDURE `ADD_NEW_Patient_PHONES`(
-Patient_ID_V int(11),
-Patient_Phones_V  int(11)
-)
-BEGIN
-insert into sys_Patient_Phones(
-Patient_ID,
-Patient_Phones
-
-) VALUES (
-Patient_ID_V, 
-Patient_Phones_V
-);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `EDIT_ADMIN` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -696,7 +587,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -704,7 +595,6 @@ CREATE DEFINER=`admin`@`%` PROCEDURE `EDIT_DOCTOR`(
 ID_V int(11),
 Status_V varchar(30),
 Admin_ID_V int(11),
-Clinic_ID_V int(11),
 F_Name_V varchar(15),
 L_Name_V  varchar(15),
 Email_V  varchar(45),
@@ -714,14 +604,16 @@ Gender_V  varchar(15),
 DOB_V  varchar(10),
 Specialization_V  varchar(45),
 Phone_V  int(11),
-Photo_V VARCHAR(200)
+Photo_V VARCHAR(200),
+Vedio_V VARCHAR(200),
+Bio_V VARCHAR(250)
+
 )
 BEGIN
 update sys_Doctor
 set
 	Doctor_Status = IFNULL(Status_V,Doctor_Status),
     Admin_ID = IFNULL(Admin_ID_V,Admin_ID),
-    Clinic_ID = IFNULL(Clinic_ID_V,Clinic_ID),
     F_NAME = IFNULL(F_NAME_V,F_NAME),
 	L_NAME = IFNULL(L_NAME_V,L_NAME),
 	Email = IFNULL(Email_V,Email),
@@ -731,7 +623,9 @@ set
 	DOB = IFNULL(DOB_V,DOB),
 	Specialization = IFNULL(Specialization_V,Specialization),
 	Phone = IFNULL(Phone_V,Phone),
-    Photo = IFNULL(Photo_V,Photo)
+    Photo = IFNULL(Photo_V,Photo),
+    Vedio = IFNULL(Vedio_V,Vedio),
+    Bio = IFNULL(Bio_V,Bio)
     where ID = ID_V;
 END ;;
 DELIMITER ;
@@ -745,7 +639,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -757,6 +651,7 @@ L_Name_V  varchar(15),
 Email_V  varchar(45),
 Pass_V  varchar(45),
 Address_V  varchar(45),
+Phone_V varchar(15),
 Gender_V  varchar(15),
 DOB_V  varchar(10),
 Weight_V  INT(11),
@@ -773,6 +668,7 @@ set
 	Email = IFNULL(Email_V,Email),
     Pass = IFNULL(Pass_V,Pass),
 	Address = IFNULL(Address_V,Address),
+    Phone = IFNULL(Phone_V,Phone),
 	Gender = IFNULL(Gender_V,Gender),
 	DOB = IFNULL(DOB_V,DOB),
 	Weight= IFNULL(Weight_V,Weight),
@@ -792,7 +688,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -811,7 +707,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -830,7 +726,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -849,7 +745,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -869,7 +765,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -889,7 +785,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -903,33 +799,13 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GET_ALL_DOCTORS_EXPERIENCES` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`admin`@`%` PROCEDURE `GET_ALL_DOCTORS_EXPERIENCES`( OFFSET_V int , ROWS_PER_PAGE_V int )
-BEGIN
-select * from sys_Doctor_Experiences LIMIT OFFSET_V ,ROWS_PER_PAGE_V ;
-
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GET_ALL_PATIENTS` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -949,7 +825,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -963,33 +839,13 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GET_ALL_PATIENTS_PHONES` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`admin`@`%` PROCEDURE `GET_ALL_PATIENTS_PHONES`( OFFSET_V int , ROWS_PER_PAGE_V int )
-BEGIN
-select * from sys_Patient_Phones LIMIT OFFSET_V ,ROWS_PER_PAGE_V ;
-
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GET_DOCTOR` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1002,32 +858,13 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GET_DOCTOR_EXPERIENCES` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`admin`@`%` PROCEDURE `GET_DOCTOR_EXPERIENCES`(Patient_ID_V int)
-BEGIN
-select * from sys_Doctor_Experiences where Doctor_ID = Doctor_ID_V; 
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GET_DOCTOR_HAS_PATIENT` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1046,7 +883,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1065,7 +902,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1084,7 +921,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1097,32 +934,13 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `GET_PATIENT_PHONES` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`admin`@`%` PROCEDURE `GET_PATIENT_PHONES`(Patient_ID_V int)
-BEGIN
-select * from sys_Patient_Phones where Patient_ID = Patient_ID_V; 
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `GET_PATIENT_REFRESHTOKEN` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1141,7 +959,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1167,7 +985,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1193,7 +1011,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1219,7 +1037,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1241,7 +1059,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1263,7 +1081,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -1287,6 +1105,6 @@ DELIMITER ;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-
--- Dump completed on 2023-01-29 18:23:10
+-- Dump completed on 2023-04-09 19:47:10
