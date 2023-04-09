@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity >=0.4.22 <0.9.0;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.0;
 
 contract EHR {
     struct Record {
@@ -22,11 +22,13 @@ contract EHR {
     mapping(address => Patient) public patients;
     mapping(address => Doctor) public doctors;
 
+    
     // events
     event PatientAdded(address patientId);
     event DoctorAdded(address doctorId);
     event RecordAdded(string cid, address patientId, address doctorId);
 
+    
     // modifiers
     modifier senderExists() {
         require(
@@ -47,7 +49,8 @@ contract EHR {
         _;
     }
 
-    // functions
+    
+    // Patient Functions
     function addPatient(address _patientId) public senderIsDoctor {
         require(
             patients[_patientId].id != _patientId,
@@ -58,6 +61,22 @@ contract EHR {
         emit PatientAdded(_patientId);
     }
 
+    function getPatient(
+        address _patientId
+    ) public view returns (Patient memory) {
+        if (patients[_patientId].id != _patientId) revert("Not a patient");
+
+        return patients[_patientId];
+    }
+
+    function getPatientExists(
+        address _patientId
+    ) public view senderIsDoctor returns (bool) {
+        return patients[_patientId].id == _patientId;
+    }
+
+    
+    // Doctor Functions
     function addDoctor() public {
         require(
             doctors[msg.sender].id != msg.sender,
@@ -68,6 +87,14 @@ contract EHR {
         emit DoctorAdded(msg.sender);
     }
 
+    function getDoctor(address _doctorId) public view returns (Doctor memory) {
+        if (doctors[_doctorId].id != _doctorId) revert("Not a doctor");
+
+        return doctors[_doctorId];
+    }
+
+    
+    // Record Functions
     function addRecord(
         string memory _cid,
         string memory _fileName,
@@ -87,10 +114,18 @@ contract EHR {
 
     function getRecords(
         address _patientId
-    ) public view senderExists patientExists(_patientId) returns (Record[] memory) {
+    )
+        public
+        view
+        senderExists
+        patientExists(_patientId)
+        returns (Record[] memory)
+    {
         return patients[_patientId].records;
     }
 
+    
+    // Utils
     function getSenderRole() public view returns (string memory) {
         if (doctors[msg.sender].id == msg.sender) {
             return "doctor";
@@ -99,11 +134,5 @@ contract EHR {
         } else {
             return "unknown";
         }
-    }
-
-    function getPatientExists(
-        address _patientId
-    ) public view senderIsDoctor returns (bool) {
-        return patients[_patientId].id == _patientId;
     }
 }
