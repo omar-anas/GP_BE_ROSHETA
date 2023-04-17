@@ -1,6 +1,8 @@
 const db = require('../DB/exectuemysql');
 const helper = require('../DB/helper')
 const config = require('../DB/mysqlconfig');
+require('dotenv');
+
 class PatientController {
     static getAllPatients = async (req,res) =>{
     try {
@@ -90,11 +92,10 @@ static addPatient =async (req,res)=>{
                 let DOB_V = req.body.DOB
                 let PATIENT_WEIGHT_V = req.body.PATIENT_WEIGHT
                 let PATIENT_HEIGHT_V = req.body.PATIENT_HEIGHT
-                let PATIENT_SYMPTOM_V = req.body.PATIENT_SYMPTOM
                 let PATIENT_PHOTO_V = req.body.PATIENT_PHOTO
 
                 const rows = await db.query(
-                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_STATUS_V}',${PATIENT_ADMIN_ID_V},'${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}','${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${PATIENT_GENDER_V}','${DOB_V}','${PATIENT_HEIGHT_V}','${PATIENT_WEIGHT_V}','${PATIENT_SYMPTOM_V}','${PATIENT_PHOTO_V}')`
+                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_STATUS_V}',${PATIENT_ADMIN_ID_V},'${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}','${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${PATIENT_GENDER_V}','${DOB_V}','${PATIENT_HEIGHT_V}','${PATIENT_WEIGHT_V}','${PATIENT_PHOTO_V}')`
                 );
                 const data = helper.emptyOrRows(rows);
                 res.json({ message: "Success PATIENT IS MODIFIED", data });
