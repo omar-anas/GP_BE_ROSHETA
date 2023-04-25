@@ -36,7 +36,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -62,7 +63,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -1860,7 +1862,7 @@
   "sourceMap": "82:1747:2:-:0;;;942:173;;;;;;;;;;975:10;967:5;;:18;;;;;;;;;;;;;;;;;;1101:5;;;;;;;;;;1080:27;;1097:1;1080:27;;;;;;;;;;;;82:1747;;;;;;",
   "deployedSourceMap": "82:1747:2:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1648:178;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;137:36;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;1438:83;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;1212:133;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;1529:111;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;1648:178;823:5;;;;;;;;;;809:19;;:10;:19;;;801:51;;;;;;;;;;;;:::i;:::-;;;;;;;;;1715:19:::1;1748:11;1715:45;;1771:8;:21;;;1793:24;;1771:47;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;1704:122;1648:178:::0;:::o;137:36::-;;;;:::o;1438:83::-;1481:7;1508:5;;;;;;;;;;;1501:12;;1438:83;:::o;1212:133::-;823:5;;;;;;;;;;809:19;;:10;:19;;;801:51;;;;;;;;;;;;:::i;:::-;;;;;;;;;1301:8:::1;1285:25;;1294:5;::::0;::::1;;;;;;;;1285:25;;;;;;;;;;;;1329:8;1321:5;::::0;:16:::1;;;;;;;;;;;;;;;;;;1212:133:::0;:::o;1529:111::-;823:5;;;;;;;;;;809:19;;:10;:19;;;801:51;;;;;;;;;;;;:::i;:::-;;;;;;;;;1623:9:::1;1596:24;:36;;;;1529:111:::0;:::o;88:117:3:-;197:1;194;187:12;334:126;371:7;411:42;404:5;400:54;389:65;;334:126;;;:::o;466:96::-;503:7;532:24;550:5;532:24;:::i;:::-;521:35;;466:96;;;:::o;568:122::-;641:24;659:5;641:24;:::i;:::-;634:5;631:35;621:63;;680:1;677;670:12;621:63;568:122;:::o;696:139::-;742:5;780:6;767:20;758:29;;796:33;823:5;796:33;:::i;:::-;696:139;;;;:::o;841:329::-;900:6;949:2;937:9;928:7;924:23;920:32;917:119;;;955:79;;:::i;:::-;917:119;1075:1;1100:53;1145:7;1136:6;1125:9;1121:22;1100:53;:::i;:::-;1090:63;;1046:117;841:329;;;;:::o;1176:77::-;1213:7;1242:5;1231:16;;1176:77;;;:::o;1259:118::-;1346:24;1364:5;1346:24;:::i;:::-;1341:3;1334:37;1259:118;;:::o;1383:222::-;1476:4;1514:2;1503:9;1499:18;1491:26;;1527:71;1595:1;1584:9;1580:17;1571:6;1527:71;:::i;:::-;1383:222;;;;:::o;1611:118::-;1698:24;1716:5;1698:24;:::i;:::-;1693:3;1686:37;1611:118;;:::o;1735:222::-;1828:4;1866:2;1855:9;1851:18;1843:26;;1879:71;1947:1;1936:9;1932:17;1923:6;1879:71;:::i;:::-;1735:222;;;;:::o;1963:122::-;2036:24;2054:5;2036:24;:::i;:::-;2029:5;2026:35;2016:63;;2075:1;2072;2065:12;2016:63;1963:122;:::o;2091:139::-;2137:5;2175:6;2162:20;2153:29;;2191:33;2218:5;2191:33;:::i;:::-;2091:139;;;;:::o;2236:329::-;2295:6;2344:2;2332:9;2323:7;2319:23;2315:32;2312:119;;;2350:79;;:::i;:::-;2312:119;2470:1;2495:53;2540:7;2531:6;2520:9;2516:22;2495:53;:::i;:::-;2485:63;;2441:117;2236:329;;;;:::o;2571:169::-;2655:11;2689:6;2684:3;2677:19;2729:4;2724:3;2720:14;2705:29;;2571:169;;;;:::o;2746:::-;2886:21;2882:1;2874:6;2870:14;2863:45;2746:169;:::o;2921:366::-;3063:3;3084:67;3148:2;3143:3;3084:67;:::i;:::-;3077:74;;3160:93;3249:3;3160:93;:::i;:::-;3278:2;3273:3;3269:12;3262:19;;2921:366;;;:::o;3293:419::-;3459:4;3497:2;3486:9;3482:18;3474:26;;3546:9;3540:4;3536:20;3532:1;3521:9;3517:17;3510:47;3574:131;3700:4;3574:131;:::i;:::-;3566:139;;3293:419;;;:::o",
   "source": "// SPDX-License-Identifier: GPL-3.0-or-later\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Migrations {\r\n    address private owner;\r\n    uint public last_completed_migration;\r\n\r\n    // event for EVM logging\r\n    event OwnerSet(address indexed oldOwner, address indexed newOwner);\r\n\r\n    // modifier to check if caller is owner\r\n    modifier restricted() {\r\n        // If the first argument of 'require' evaluates to 'false', execution terminates and all\r\n        // changes to the state and to Ether balances are reverted.\r\n        // This used to consume all gas in old EVM versions, but not anymore.\r\n        // It is often a good idea to use 'require' to check if functions are called correctly.\r\n        // As a second argument, you can also provide an explanation about what went wrong.\r\n        require(msg.sender == owner, \"Caller is not owner\");\r\n        _;\r\n    }\r\n\r\n    /**\r\n     * @dev Set contract deployer as owner\r\n     */\r\n    constructor() {\r\n        owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor\r\n        emit OwnerSet(address(0), owner);\r\n    }\r\n\r\n    /**\r\n     * @dev Change owner\r\n     * @param newOwner address of new owner\r\n     */\r\n    function changeOwner(address newOwner) public restricted {\r\n        emit OwnerSet(owner, newOwner);\r\n        owner = newOwner;\r\n    }\r\n\r\n    /**\r\n     * @dev Return owner address\r\n     * @return address of owner\r\n     */\r\n    function getOwner() external view returns (address) {\r\n        return owner;\r\n    }\r\n\r\n    function setCompleted(uint completed) public restricted {\r\n        last_completed_migration = completed;\r\n    }\r\n\r\n    function upgrade(address new_address) public restricted {\r\n        Migrations upgraded = Migrations(new_address);\r\n        upgraded.setCompleted(last_completed_migration);\r\n    }\r\n}\r\n",
-  "sourcePath": "E:\\Projects\\MobiCare\\backend\\GP_BE_ROSHETA\\contracts\\Migrations.sol",
+  "sourcePath": "D:\\GP_BE_ROSHETA\\contracts\\Migrations.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -3086,12 +3088,13 @@
         }
       },
       "links": {},
-      "address": "0x85A730bdC324e7570A55808470cDFAC0B2a75d3E",
-      "transactionHash": "0xf201f9c5fa9276fd13a2cef1c06d67024768f4f081f4bf1ded108f98353d9024"
+      "address": "0xa66C8424ad174bCDeCf506b015Ad2f8a04FF20cb",
+      "transactionHash": "0xded88921d56100af85786b8e11afe710f83bc0599887780a8f52130ad9fb98f9"
     }
   },
   "schemaVersion": "3.4.12",
-  "updatedAt": "2023-03-25T15:59:43.513Z",
+  "updatedAt": "2023-03-30T15:48:12.162Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {

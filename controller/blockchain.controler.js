@@ -43,7 +43,7 @@ class blockchainController {
     console.log({ sender, cid, fileName, patientId });
 
     truffle_connect.addRecord(sender, cid, fileName, patientId, function (records) {
-      res.send(records);
+      res.send({records});
     })
   }
 
