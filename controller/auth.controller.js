@@ -89,6 +89,8 @@ class authController {
 
             let data = helper.emptyOrRows(rows);
             data = data[0][0];
+            delete data.Refresh_Token_Value
+            delete data.Pass
 
             if (data) {
                 accessToken = await helper.generateAccessToken({ ID: data.ID, Doctor_Email_V, role: "DOCTOR" });
@@ -101,7 +103,7 @@ class authController {
             } else {
                 throw new Error("wrong email or password")
             }
-            res.json({ accessToken, refreshToken, message: "sucessfull authentication" })
+            res.json({ message: "sucessfull authentication" ,accessToken, refreshToken, data , role:"DOCTOR"  })
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
@@ -123,6 +125,9 @@ class authController {
 
             let data = helper.emptyOrRows(rows);
             data = data[0][0];
+            delete data.Refresh_Token_Value
+            delete data.Pass
+            
 
             if (data) {
                 accessToken = await helper.generateAccessToken({ ID: data.ID, Patient_Email_V, role: "PATIENT" });
@@ -135,7 +140,7 @@ class authController {
             } else {
                 throw new Error("wrong email or password")
             }
-            res.json({ accessToken, refreshToken, message: "sucessfull authentication" })
+            res.json({ message: "sucessfull authentication" ,accessToken, refreshToken, data ,role: "PATIENT" })
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
         }

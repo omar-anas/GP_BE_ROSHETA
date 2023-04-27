@@ -62,13 +62,14 @@ class DoctorController {
             let DOB_V = req.body.DOB
             let SPECIALIZATION_V = req.body.SPECIALIZATION
             let PHONE_V = req.body.PHONE
-
+            let PHOTO_V = req.body.PHOTO? doctor.PHOTO : null
+            
             if (!DOCTOR_EMAIL_V) {
                 DOCTOR_EMAIL_V = helper.doctorEmailGenerator(DOCTOR_FIRST_NAME_V, DOCTOR_LAST_NAME_V);
             }
             const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
             const rows = await db.query(
-                `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
+                `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}',${GENDER_V},'${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${PHOTO_V}')`
             );
             const data = helper.emptyOrRows(rows);
             res.json({ message: "Success DOCTOR IS ADDED", data });
