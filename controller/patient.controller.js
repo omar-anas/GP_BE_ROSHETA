@@ -49,21 +49,22 @@ class PatientController {
 
     static addPatient = async (req, res) => {
         const patient = req.body
+        console.log(patient)
         try {
 
             let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME
             let PATIENT_LAST_NAME_V = patient.PATIENT_LAST_NAME
-            let PATIENT_EMAIL_V = req.body.PATIENT_EMAIL
-            let PATIENT_PASS_V = req.body.PATIENT_PASSWORD
-            let PATIENT_PHONE_V = req.body.PATIENT_PHONE
+            let PATIENT_EMAIL_V = patient.PATIENT_EMAIL
+            let PATIENT_PASS_V = patient.PATIENT_PASSWORD
+            let PATIENT_PHONE_V = patient.PATIENT_PHONE
             let PATIENT_ADDRESS_V = patient.PATIENT_ADDRESS
-            let PATIENT_GENDER_V = req.body.PATIENT_GENDER
-            let DOB_V = req.body.DOB
+            let PATIENT_GENDER_V = patient.PATIENT_GENDER
+            let DOB_V = patient.DOB
 
             const HASHED_PASSWORD_V = await helper.hashingPassword(PATIENT_PASS_V);
 
             const rows = await db.query(
-                `call ADD_NEW_PATIENT('${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${HASHED_PASSWORD_V},${PATIENT_PHONE_V},'${PATIENT_ADDRESS_V}','${PATIENT_GENDER_V}','${DOB_V}')`
+                `call ADD_NEW_PATIENT('${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${HASHED_PASSWORD_V},'${PATIENT_PHONE_V}','${PATIENT_ADDRESS_V}','${PATIENT_GENDER_V}','${DOB_V}')`
             );
             const data = helper.emptyOrRows(rows);
             res.json({ message: "Success PATIENT IS ADDED", data });
