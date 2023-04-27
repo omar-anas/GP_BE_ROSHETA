@@ -136,7 +136,6 @@ class authController {
                 throw new Error("wrong email or password")
             }
             res.json({ accessToken, refreshToken, message: "sucessfull authentication" })
-
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
         }

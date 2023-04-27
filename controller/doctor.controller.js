@@ -1,6 +1,6 @@
 const db = require('../DB/exectuemysql');
 const helper = require('../DB/helper')
-const config = require('../DB/mysqlconfig').default;
+const config = require('../DB/mysqlconfig');
 
 require('dotenv');
 
@@ -53,7 +53,6 @@ class DoctorController {
         const doctor = req.body
         try {
             let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID
-            let DOCTOR_CLINC_ID_V = doctor.CLINC_ID
             let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME
             let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME
             let DOCTOR_EMAIL_V = doctor.DOCTOR_EMAIL ? doctor.DOCTOR_EMAIL : null
@@ -69,7 +68,7 @@ class DoctorController {
             }
             const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
             const rows = await db.query(
-                `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},${DOCTOR_CLINC_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
+                `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
             );
             const data = helper.emptyOrRows(rows);
             res.json({ message: "Success DOCTOR IS ADDED", data });
@@ -86,7 +85,6 @@ class DoctorController {
             let DOCTOR_ID_V = req.params.id
             let DOCTOR_STATUS_V = doctor.STATUS
             let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID
-            let DOCTOR_CLINC_ID_V = doctor.CLINC_ID
             let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME
             let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME
             let DOCTOR_EMAIL_V = req.body.DOCTOR_EMAIL
@@ -96,11 +94,14 @@ class DoctorController {
             let DOB_V = req.body.DOB
             let SPECIALIZATION_V = req.body.SPECIALIZATION
             let PHONE_V = req.body.PHONE
-
+            let BIO_V = req.body.BIO
+            let PHOTO_V = req.body.PHOTO
+            let VEDIO_V = req.body.VEDIO
             const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
 
+
             const rows = await db.query(
-                `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},${DOCTOR_CLINC_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
+                `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${BIO_V}','${PHOTO_V}','${VEDIO_V}')`
             );
             const data = helper.emptyOrRows(rows);
             res.json({ message: "Success DOCTOR IS MODIFIED", data });
