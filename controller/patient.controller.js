@@ -84,7 +84,7 @@ class PatientController {
             let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME? req.body.PATIENT_FIRST_NAME:null
             let PATIENT_LAST_NAME_V = patient.PATIENT_LAST_NAME? req.body.PATIENT_LAST_NAME:null
             let PATIENT_EMAIL_V = req.body.PATIENT_EMAIL? req.body.PATIENT_EMAIL:null
-            let PATIENT_PASS_V = req.body.PATIENT_PASS ? req.body.PATIENT_PASS:null
+            let PATIENT_PASS_V = req.body.PATIENT_PASSWORD ? req.body.PATIENT_PASSWORD:null
             let PATIENT_ADDRESS_V = patient.PATIENT_ADDRESS? req.body.PATIENT_ADDRESS:null
             let PATIENT_PHONE_V = req.body.PATIENT_PHONE? req.body.PATIENT_PHONE:null
             let PATIENT_GENDER_V = req.body.PATIENT_GENDER? req.body.PATIENT_GENDER:null
@@ -94,13 +94,14 @@ class PatientController {
             let PATIENT_SYMPTOM_V = req.body.PATIENT_SYMPTOM? req.body.PATIENT_SYMPTOM:null
             let PATIENT_PHOTO_V = req.body.PATIENT_PHOTO? req.body.PATIENT_PHOTO:null
 
+            
             if(PATIENT_PASS_V){
 
                 PATIENT_PASS_V = await helper.hashingPassword(PATIENT_PASS_V);
             }
 
             const rows = await db.query(
-                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_FUID_V}','${PATIENT_STATUS_V}','${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}','${PATIENT_PASS_V}','${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${PATIENT_GENDER_V}','${DOB_V}','${PATIENT_WEIGHT_V}','${PATIENT_HEIGHT_V}','${PATIENT_PHOTO_V}','${PATIENT_SYMPTOM_V}')`
+                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_FUID_V}','${PATIENT_STATUS_V}','${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${PATIENT_PASS_V},'${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${PATIENT_GENDER_V}','${DOB_V}','${PATIENT_WEIGHT_V}','${PATIENT_HEIGHT_V}','${PATIENT_PHOTO_V}','${PATIENT_SYMPTOM_V}')`
             );
             const data = helper.emptyOrRows(rows);
             res.json({ message: "Success PATIENT IS MODIFIED", data });
