@@ -5,11 +5,11 @@ const makeStorageClient = () => new Web3Storage({ token: process.env.WEB3STORAGE
 async function checkStatus(cid) {
     const client = makeStorageClient()
 
-    const status = await client.status(cid)
+    let status = await client.status(cid)
 
-    console.log(status)
+    console.log({ status })
     if (status) {
-        consle.log(await client)
+        return status
     }
 }
 

@@ -1,4 +1,4 @@
-const Web3Storage =  require('web3.storage').Web3Storage
+const Web3Storage = require('web3.storage').Web3Storage
 
 const makeStorageClient = () => new Web3Storage({ token: process.env.WEB3STORAGE_TOKEN })
 
@@ -6,8 +6,12 @@ async function listUploads() {
     const client = makeStorageClient()
 
     for await (const upload of client.list()) {
-        console.log(`${upload.name} - cid: ${upload.cid} - size: ${upload.dagSize}`)
+        console.log(`${upload.createdname} - cid: ${upload.cid} - size: ${upload.dagSize}`)
     }
+
+    console.log(client.list())
+
+    return client.list()
 }
 
 async function listWithLimits() {
