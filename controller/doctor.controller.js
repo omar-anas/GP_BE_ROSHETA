@@ -70,6 +70,7 @@ class DoctorController {
             const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
             const rows = await db.query(
                 `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}',${GENDER_V},'${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${PHOTO_V}')`
+                
             );
             const data = helper.emptyOrRows(rows);
             res.json({ message: "Success DOCTOR IS ADDED", data });
