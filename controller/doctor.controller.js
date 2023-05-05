@@ -131,9 +131,9 @@ class DoctorController {
             
             let query
             if(DOCTOR_LAST_NAME_V==null){
-                query= `F_Name = '${DOCTOR_FIRST_NAME_V}'`
+                query= `F_Name LIKE '${DOCTOR_FIRST_NAME_V}%'`
             }else{
-               query = `F_Name = '${DOCTOR_FIRST_NAME_V}' and L_Name = '${DOCTOR_LAST_NAME_V}'`
+               query = `F_Name LIKE '${DOCTOR_FIRST_NAME_V}%' and L_Name LIKE '${DOCTOR_LAST_NAME_V}%'`
             }
     
             const rows = await db.query(
@@ -160,7 +160,7 @@ class DoctorController {
             
     
             const rows = await db.query(
-                `select * from sys_doctor where Specialization = '${SPECIALIZATION_V}' `
+                `select * from sys_doctor where Specialization LIKE '${SPECIALIZATION_V}%' `
             );
     
             const data = helper.emptyOrRows(rows);
