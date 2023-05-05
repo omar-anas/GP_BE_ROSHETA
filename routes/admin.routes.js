@@ -10,6 +10,10 @@ router.get('/doctor/getAll',adminMiddleware,DoctorController.getAllDoctors);
 router.get('/doctor/get/:id',adminMiddleware,DoctorController.getDoctor);
 router.post('/doctor/add',adminMiddleware,DoctorController.addDoctor);
 router.patch('/doctor/edit/:id',adminMiddleware,DoctorController.editDoctor);
+router.get('/doctor/search',DoctorController.searchDoctorByName);
+router.get('/doctor/searchSpec',DoctorController.searchDoctorBySpecialization);
+
+
 
 //  Patient Routes
 router.get('/patient/getAll',adminMiddleware,PatientController.getAllPatients);

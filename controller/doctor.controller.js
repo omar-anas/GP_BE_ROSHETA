@@ -1,6 +1,8 @@
+const { query } = require('express');
 const db = require('../DB/exectuemysql');
 const helper = require('../DB/helper')
 const config = require('../DB/mysqlconfig');
+const url = require('url')
 
 require('dotenv');
 
@@ -118,6 +120,60 @@ class DoctorController {
 
         }
     }
+
+    static searchDoctorByName =async (req,res)=>{
+        let doctor = req.query
+        console.log(doctor);
+        try{
+
+            let DOCTOR_FIRST_NAME_V = doctor.FN ? doctor.FN:null
+            let DOCTOR_LAST_NAME_V = doctor.LN ? doctor.LN:null
+            
+            let query
+            if(DOCTOR_LAST_NAME_V==null){
+                query= `F_Name = '${DOCTOR_FIRST_NAME_V}'`
+            }else{
+               query = `F_Name = '${DOCTOR_FIRST_NAME_V}' and L_Name = '${DOCTOR_LAST_NAME_V}'`
+            }
+    
+            const rows = await db.query(
+                `select * from sys_doctor where ${query}`
+            );
+    
+            const data = helper.emptyOrRows(rows);
+                res.json({ message: "Result", data });
+        }
+            
+          catch (error) {
+            res.json({ message: "failed Process", error: error.message });
+    
+        }   
+    }
+    static searchDoctorBySpecialization =async (req,res)=>{
+        let doctor = req.query
+        console.log(doctor);
+        try{
+            let SPECIALIZATION_V = doctor.SPECIALIZATION ? doctor.SPECIALIZATION:null
+
+            
+            
+            
+    
+            const rows = await db.query(
+                `select * from sys_doctor where Specialization = '${SPECIALIZATION_V}' `
+            );
+    
+            const data = helper.emptyOrRows(rows);
+                res.json({ message: "Result", data });
+        }
+            
+          catch (error) {
+            console.log(error.error)
+            res.json({ message: "failed Process" });
+    
+        }   
+    }
+    
 
 }
 
