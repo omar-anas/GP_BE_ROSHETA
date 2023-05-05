@@ -1,6 +1,3 @@
-const fs = require('fs')
-const path = require('path')
-
 const { storeFile, storeWithProgress } = require('../web3/store')
 const { retrieve, retrieveFiles } = require('../web3/retrieve')
 const { checkStatus } = require('../web3/query')
@@ -8,10 +5,14 @@ const { listUploads, listWithLimits } = require('../web3/list')
 
 class Web3Controller {
     static store = async (req, res) => {
-        const file = req.body.file
+        console.log({ data: req.body })
+
+        let file = req.body.file
+        console.log({ file })
 
         storeFile(file)
             .then(cid => {
+                console.log({ cid })
                 res.send({ cid })
             })
             .catch(error => res.send({ error }))
@@ -22,31 +23,43 @@ class Web3Controller {
 
         retrieve(cid)
             .then(async data => {
-                let sss
-                await data.unixFsIterator().next().then(console.log)
+                // let unixData = await data.unixFsIterator().next()
+                //     .then(unix => {
+                //         let value = unix.value
+                //         let done = unix.done
 
+                //         let d = {
+                //             type: value.type,
+                //             name: value.name,
+                //             path: value.path,
+                //             cid: value.cid,
+                //             // content: value.content.yieldDirectoryContent,
+                //             // unixfs: Object(value.unixfs),
+                //             depth: value.depth,
+                //             // node: value.node,
+                //             size: value.size,
+                //             done: done
+                //         }
+                //         return d
+                //     })
                 let symbols = Object.getOwnPropertySymbols(data)
                 let bodyInternals = data[symbols[0]]
                 let responseInternals = data[symbols[1]]
                 let files = await data.files()
-                let unixFsIterator = await data.unixFsIterator().next().then(res => res)
                 let size = data.size
-
-                console.log({ bodyInternals })
-                console.log({ responseInternals })
-                console.log({ files })
-                console.log({ unixFsIterator })
-                console.log({ size })
 
                 res.send({
                     bodyInternals,
                     responseInternals,
                     files,
-                    unixFsIterator,
+                    // unixData,
                     size
                 })
             })
-            .catch(error => res.send({ error }))
+            .catch(error => {
+                console.error(error)
+                res.send({ error: error.message })
+            })
     }
 
     static query = async (req, res) => {
