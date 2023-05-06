@@ -2,20 +2,25 @@ const { storeFile, storeWithProgress } = require('../web3/store')
 const { retrieve, retrieveFiles } = require('../web3/retrieve')
 const { checkStatus } = require('../web3/query')
 const { listUploads, listWithLimits } = require('../web3/list')
+const { File, Blob } = require('web3.storage')
 
 class Web3Controller {
     static store = async (req, res) => {
-        console.log({ data: req.body })
 
         let file = req.body.file
-        console.log({ file })
 
-        storeFile(file)
+        const newFile = new File([
+            new Blob([file])
+        ], "testName.jpg");
+
+        console.log({ newFile })
+
+        storeFile(newFile)
             .then(cid => {
                 console.log({ cid })
                 res.send({ cid })
             })
-            .catch(error => res.send({ error }))
+            .catch(error => res.send({ error: error.message }))
     }
 
     static retrieve = async (req, res) => {
