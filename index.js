@@ -16,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //routes
+app.use("/patient", require('./routes/patient.routes'));
+app.use("/doctor", require('./routes/doctor.routes'));
 app.use("/admin", require('./routes/admin.routes'));
 app.use("/web3", require('./routes/web3.routes'));
 app.use("/", require('./routes/auth.routes'));
