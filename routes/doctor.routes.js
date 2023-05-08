@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const DoctorController = require('../controller/doctor.controller')
 const PatientController = require('../controller/patient.controller')
-const authController = require('../controller/auth.controller')
+const doctorMiddleware = require('../middlewares/doctorAuth.middleware')
 
+
+router.patch('/editProfile',doctorMiddleware,DoctorController.editDoctor);
 
 
 router.get('/searchSpec',DoctorController.searchDoctorBySpecialization);
