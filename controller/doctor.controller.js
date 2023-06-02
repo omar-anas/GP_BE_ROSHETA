@@ -1,117 +1,201 @@
-const db = require('../DB/exectuemysql');
-const helper = require('../DB/helper')
-const config = require('../DB/mysqlconfig');
+const { query } = require("express");
+const db = require("../DB/exectuemysql");
+const helper = require("../DB/helper");
+const config = require("../DB/mysqlconfig");
+const url = require("url");
 
-require('dotenv');
+require("dotenv");
 
 class DoctorController {
+  static getAllDoctors = async (req, res) => {
+    try {
+      let page = req.query.page;
+      let limit = req.query.limit;
+      let listPerPage = limit ? limit : config.listPerPage;
 
-    static getAllDoctors = async (req, res) => {
-        try {
-            let page = req.query.page;
-            let limit = req.query.limit;
-            let listPerPage = limit ? limit : config.listPerPage;
+      const offset = helper.getOffset(page, listPerPage);
+      const rows = await db.query(
+        `call GET_ALL_DOCTORS(${offset},${listPerPage})`
+      );
+      const data = helper.emptyOrRows(rows);
+      const totalNumber = data[0][0] ? data[0][0]["number_of_rows"] : 0;
+      const count =
+        totalNumber - offset > listPerPage
+          ? listPerPage
+          : totalNumber - offset > 0
+          ? totalNumber - offset
+          : 0;
 
-            const offset = helper.getOffset(page, listPerPage);
-            const rows = await db.query(
-                `call GET_ALL_DOCTORS(${offset},${listPerPage})`
-            );
-            const data = helper.emptyOrRows(rows);
-            const totalNumber = (data[0][0] ? data[0][0]['number_of_rows'] : 0);
-            const count = (totalNumber) - offset > listPerPage ? listPerPage : (totalNumber) - offset > 0 ? (totalNumber) - offset : 0;
-
-            data[1]['offset'] = offset;
-            data[1]['page'] = page;
-            data[1]['count'] = count;
-            data[1]['totalNumber'] = totalNumber;
-            data[1]['limit'] = listPerPage;
-            const hasmore = data != [] ? helper.hasmore(listPerPage, count) : false
-            data[1]['hasmore'] = hasmore;
-            res.json({ message: "success fetched all doctors", data });
-
-        } catch (error) {
-            res.json({ message: "fail", error: error.message });
-
-        }
+      data[1]["offset"] = offset;
+      data[1]["page"] = page;
+      data[1]["count"] = count;
+      data[1]["totalNumber"] = totalNumber;
+      data[1]["limit"] = listPerPage;
+      const hasmore = data != [] ? helper.hasmore(listPerPage, count) : false;
+      data[1]["hasmore"] = hasmore;
+      res.json({ message: "success fetched all doctors", data });
+    } catch (error) {
+      res.json({ message: "fail", error: error.message });
     }
-    static getDoctor = async (req, res) => {
-        try {
-            const rows = await db.query(
-                `call GET_DOCTOR(${req.params.id})`
-            );
-            const data = helper.emptyOrRows(rows);
+  };
+  static getDoctor = async (req, res) => {
+    try {
+      const rows = await db.query(`call GET_DOCTOR(${req.params.id})`);
+      const data = helper.emptyOrRows(rows);
 
-            res.json({ message: "success fetched  doctor", data });
-
-        } catch (error) {
-            res.json({ message: "fail", error: error.message });
-
-        }
+      res.json({ message: "success fetched  doctor", data });
+    } catch (error) {
+      res.json({ message: "fail", error: error.message });
     }
+  };
 
-    static addDoctor = async (req, res) => {
-        const doctor = req.body
-        try {
-            let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID
-            let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME
-            let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME
-            let DOCTOR_EMAIL_V = doctor.DOCTOR_EMAIL ? doctor.DOCTOR_EMAIL : null
-            let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD
-            let ADDRESS_V = doctor.ADDRESS
-            let GENDER_V = req.body.GENDER
-            let DOB_V = req.body.DOB
-            let SPECIALIZATION_V = req.body.SPECIALIZATION
-            let PHONE_V = req.body.PHONE
+  static addDoctor = async (req, res) => {
+    const doctor = req.body;
+    try {
+      let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID;
+      let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME;
+      let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME;
+      let DOCTOR_EMAIL_V = doctor.DOCTOR_EMAIL ? doctor.DOCTOR_EMAIL : null;
+      let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD;
+      let ADDRESS_V = doctor.ADDRESS;
+      let GENDER_V = req.body.GENDER;
+      let DOB_V = req.body.DOB;
+      let SPECIALIZATION_V = req.body.SPECIALIZATION;
+      let PHONE_V = req.body.PHONE;
+      let PHOTO_V = req.body.PHOTO ? doctor.PHOTO : null;
 
-            if (!DOCTOR_EMAIL_V) {
-                DOCTOR_EMAIL_V = helper.doctorEmailGenerator(DOCTOR_FIRST_NAME_V, DOCTOR_LAST_NAME_V);
-            }
-            const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
-            const rows = await db.query(
-                `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}')`
-            );
-            const data = helper.emptyOrRows(rows);
-            res.json({ message: "Success DOCTOR IS ADDED", data });
-
-        } catch (error) {
-            res.json({ message: "failed Process", error: error.message });
-
-        }
+      if (!DOCTOR_EMAIL_V) {
+        DOCTOR_EMAIL_V = helper.doctorEmailGenerator(
+          DOCTOR_FIRST_NAME_V,
+          DOCTOR_LAST_NAME_V
+        );
+      }
+      const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
+      const rows = await db.query(
+        `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}',${GENDER_V},'${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${PHOTO_V}')`
+      );
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Success DOCTOR IS ADDED", data });
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message });
     }
+  };
 
-    static editDoctor = async (req, res) => {
-        const doctor = req.body
-        try {
-            let DOCTOR_ID_V = req.params.id
-            let DOCTOR_STATUS_V = doctor.STATUS
-            let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID
-            let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME
-            let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME
-            let DOCTOR_EMAIL_V = req.body.DOCTOR_EMAIL
-            let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD
-            let ADDRESS_V = doctor.ADDRESS
-            let GENDER_V = req.body.GENDER
-            let DOB_V = req.body.DOB
-            let SPECIALIZATION_V = req.body.SPECIALIZATION
-            let PHONE_V = req.body.PHONE
-            let BIO_V = req.body.BIO
-            let PHOTO_V = req.body.PHOTO
-            let VEDIO_V = req.body.VEDIO
-            const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
+  static editDoctor = async (req, res) => {
+    const doctor = req.body;
+    try {
+      let DOCTOR_ID_V = req.params.id?req.params.id:req.ID;
+      let DOCTOR_FUID_V = doctor.FUID ? req.body.FUID : null;
+      let DOCTOR_STATUS_V = doctor.STATUS ? doctor.STATUS : null;
+      let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID ? doctor.ADMIN_ID : null;
+      let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME
+        ? doctor.DOCTOR_FIRST_NAME
+        : null;
+      let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME
+        ? doctor.DOCTOR_LAST_NAME
+        : null;
+      let DOCTOR_EMAIL_V = req.body.DOCTOR_EMAIL ? doctor.DOCTOR_EMAIL : null;
+      let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD
+        ? doctor.DOCTOR_PASSWORD
+        : null;
+      let ADDRESS_V = doctor.ADDRESS ? doctor.ADDRESS : null;
+      let GENDER_V = req.body.GENDER ? doctor.GENDER : null;
+      let DOB_V = req.body.DOB ? doctor.DOB : null;
+      let SPECIALIZATION_V = req.body.SPECIALIZATION
+        ? doctor.SPECIALIZATION
+        : null;
+      let PHONE_V = req.body.PHONE ? doctor.PHONE : null;
+      let BIO_V = req.body.BIO ? doctor.BIO : null;
+      let PHOTO_V = req.body.PHOTO ? doctor.PHOTO : null;
+      let VIDEO_V = req.body.VIDEO ? doctor.VIDEO : null;
 
+      if (DOCTOR_PASS_V)
+        DOCTOR_PASS_V = await helper.hashingPassword(DOCTOR_PASS_V);
 
-            const rows = await db.query(
-                `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${BIO_V}','${PHOTO_V}','${VEDIO_V}')`
-            );
-            const data = helper.emptyOrRows(rows);
-            res.json({ message: "Success DOCTOR IS MODIFIED", data });
-
-        } catch (error) {
-            res.json({ message: "failed Process", error: error.message });
-
-        }
+      const rows = await db.query(
+        `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_FUID_V}','${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${DOCTOR_PASS_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${BIO_V}','${PHOTO_V}','${VIDEO_V}')`
+      );
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Success DOCTOR IS MODIFIED", data });
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message });
     }
+  };
 
+  static searchDoctorByName = async (req, res) => {
+    let doctor = req.query;
+    console.log(doctor);
+    try {
+      let DOCTOR_FIRST_NAME_V = doctor.FN ? doctor.FN : null;
+      let DOCTOR_LAST_NAME_V = doctor.LN ? doctor.LN : null;
+
+      let query;
+      if (DOCTOR_LAST_NAME_V == null) {
+        query = `F_Name LIKE '${DOCTOR_FIRST_NAME_V}%'`;
+      } else {
+        query = `F_Name LIKE '${DOCTOR_FIRST_NAME_V}%' and L_Name LIKE '${DOCTOR_LAST_NAME_V}%'`;
+      }
+
+      const rows = await db.query(`select * from sys_doctor where ${query}`);
+
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Result", data });
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message });
+    }
+  };
+  static searchDoctorBySpecialization = async (req, res) => {
+    let doctor = req.query;
+   
+    try {
+      let SPECIALIZATION_V = doctor.SPECIALIZATION? doctor.SPECIALIZATION: null;
+
+      const rows = await db.query(
+        `select * from sys_doctor where Specialization LIKE '${SPECIALIZATION_V}%' `
+      );
+
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Result", data });
+    } catch (error) {
+      console.log(error.error);
+      res.json({ message: "failed Process" });
+    }
+  };
+
+  static addDoctorPatient = async (req, res) => {
+    try {
+      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null;
+      let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null;
+
+      const rows = await db.query(
+        `insert into sys_patient_has_doctor (Patient_ID , Doctor_ID) VALUES (${PATIENT_ID_V}, ${DOCTOR_ID_V}) `
+      );
+
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Result", data });
+    } catch (error) {
+      console.log(error);
+      res.json({ message: "failed Process" });
+    }
+  };
+
+
+
+  static getDoctorPatients = async (req, res) => {
+    try {
+      let DOCTOR_ID_V = req.params.id ? req.params.id : null;
+
+      const rows = await db.query(
+        `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Symptoms, Phone from mobicare.sys_patient_has_doctor JOIN mobicare.sys_patient ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID  where Doctor_ID = ${DOCTOR_ID_V} ;`
+      );
+
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Result", data });
+    } catch (error) {
+      console.log(error);
+      res.json({ message: "failed Process" });
+    }
+  };
 }
 
-module.exports = DoctorController
+module.exports = DoctorController;

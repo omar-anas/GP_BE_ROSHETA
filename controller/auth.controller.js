@@ -82,15 +82,18 @@ class authController {
             let accessToken
             let refreshToken
             const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
-
+            
             const rows = await db.query(
                 `call LOGIN_DOCTOR('${Doctor_Email_V}',${HASHED_PASSWORD_V})`
-            )
-
-            let data = helper.emptyOrRows(rows);
+                )
+                
+                let data = helper.emptyOrRows(rows);
             data = data[0][0];
-
+            
+            
             if (data) {
+                delete data.Refresh_Token_Value
+                delete data.Pass
                 accessToken = await helper.generateAccessToken({ ID: data.ID, Doctor_Email_V, role: "DOCTOR" });
                 refreshToken = await jwt.sign({ ID: data.ID, Doctor_Email_V, role: "DOCTOR" }, process.env.REFRESH_TOKEN_SECRET);
 
@@ -101,7 +104,7 @@ class authController {
             } else {
                 throw new Error("wrong email or password")
             }
-            res.json({ accessToken, refreshToken, message: "sucessfull authentication" })
+            res.json({ message: "sucessfull authentication" ,accessToken, refreshToken, data , role:"DOCTOR"  })
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
@@ -114,17 +117,23 @@ class authController {
             let Patient_PASS_V = req.body.PASSWORD;
             let accessToken
             let refreshToken
-
+            
             const HASHED_PASSWORD_V = await helper.hashingPassword(Patient_PASS_V);
-
+            
+            
             const rows = await db.query(
                 `call LOGIN_PATIENT('${Patient_Email_V}',${HASHED_PASSWORD_V})`
-            )
-
-            let data = helper.emptyOrRows(rows);
-            data = data[0][0];
-
-            if (data) {
+                )
+                
+                let data = helper.emptyOrRows(rows);
+                
+                data = data[0][0];
+                
+                
+                
+                if (data) {
+                delete data.Refresh_Token_Value
+                delete data.Pass
                 accessToken = await helper.generateAccessToken({ ID: data.ID, Patient_Email_V, role: "PATIENT" });
                 refreshToken = await jwt.sign({ ID: data.ID, Patient_Email_V, role: "PATIENT" }, process.env.REFRESH_TOKEN_SECRET);
 
@@ -135,7 +144,7 @@ class authController {
             } else {
                 throw new Error("wrong email or password")
             }
-            res.json({ accessToken, refreshToken, message: "sucessfull authentication" })
+            res.json({ message: "sucessfull authentication" ,accessToken, refreshToken, data ,role: "PATIENT" })
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
         }
