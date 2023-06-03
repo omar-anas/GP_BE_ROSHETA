@@ -4,8 +4,6 @@ const doctorAuth = async (req, res, next) => {
         const token = req.header("Authorization").replace("Bearer ", "")
         const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         
-        console.log({ decoded })
-       
         req.ID = decoded.ID;
         if (decoded.role == "DOCTOR") {
             next();

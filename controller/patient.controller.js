@@ -130,10 +130,48 @@ class PatientController {
         }
     }
 
+    static getSymptoms = async (req, res) => {
+        let patient_id = req.query.id
+
+        try {
+            let rows = await db.query(
+                `SELECT *
+                    FROM patient_symptoms 
+                    WHERE patient_id = '${patient_id}';`
+            )
+
+            let data = helper.emptyOrRows(rows)
+            res.json({ message: "Success get symptoms", data })
+
+        } catch (error) {
+            res.json({ message: "failed Process", error: error.message })
+        }
+    }
+
+    static deleteSymptom = async (req, res) => {
+        const patient = req.query
+
+        try {
+            let patient_id = patient.id
+            let symptom = patient.symptom ? patient.symptom : null
+
+            const rows = await db.query(
+                `DELETE 
+                    FROM mobicare.patient_symptoms 
+                    WHERE symptom = '${symptom}' and patient_id = ${patient_id};`
+            )
+
+            const data = helper.emptyOrRows(rows)
+            res.json({ message: "Success deleted symptom", data })
+
+        } catch (error) {
+            res.json({ message: "failed Process", error: error.message })
+        }
+    }
+
     static getDoctors = async (req, res) => {
         try {
             let patient_id = req.query.id ? req.query.id : null
-            console.log({ patient_id })
 
             const rows = await db.query(
                 `select Doctor_ID, Doctor_Status, FUID, F_Name, L_Name, Email, Address, Gender, DOB, Specialization, Phone, Photo, Bio
