@@ -3,7 +3,7 @@ const PatientController = require('../controller/patient.controller')
 const patinetMiddleware = require('../middlewares/patientAuth.middleware')
 
 router.post('/register', PatientController.addPatient)
-router.post('/addSymptom', PatientController.addSymptom)
+router.post('/addSymptom', patinetMiddleware, PatientController.addSymptom)
 
 router.get('/get/:id', PatientController.getPatient)
 router.get('/getDoctors', patinetMiddleware, PatientController.getDoctors)
