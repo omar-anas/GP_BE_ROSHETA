@@ -42,7 +42,7 @@ const hashingPassword = async (password) => {
 }
 
 const generateAccessToken = async (obj) => {
-  return await jwt.sign(obj, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "45m" });
+  return await jwt.sign(obj, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "7h" });
 }
 
 module.exports = {

@@ -4,6 +4,8 @@ const adminAuth = async (req, res, next) => {
         const token = req.header("Authorization").replace("Bearer ", "")
         const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
+        console.log({ decoded })
+
         if (decoded.role == "ADMIN") {
             next();
 

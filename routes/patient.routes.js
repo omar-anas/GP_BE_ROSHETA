@@ -1,10 +1,13 @@
-const router = require("express").Router();
-const DoctorController = require('../controller/doctor.controller')
+const router = require("express").Router()
 const PatientController = require('../controller/patient.controller')
-const authController = require('../controller/auth.controller')
+const patinetMiddleware = require('../middlewares/patientAuth.middleware')
 
+router.post('/register', PatientController.addPatient)
+router.post('/addSymptom', PatientController.addSymptom)
 
+router.get('/get/:id', PatientController.getPatient)
+router.get('/getDoctors', patinetMiddleware, PatientController.getDoctors)
 
+router.patch('/edit/:id', patinetMiddleware, PatientController.editPatient)
 
-
-module.exports = router;
+module.exports = router

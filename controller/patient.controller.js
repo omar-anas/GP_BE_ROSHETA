@@ -1,48 +1,49 @@
-const db = require('../DB/exectuemysql');
+const db = require('../DB/exectuemysql')
 const helper = require('../DB/helper')
-const config = require('../DB/mysqlconfig');
+const config = require('../DB/mysqlconfig')
 
 class PatientController {
     static getAllPatients = async (req, res) => {
         try {
-            let page = req.query.page;
-            let limit = req.query.limit;
-            let listPerPage = limit ? limit : config.listPerPage;
+            let page = req.query.page
+            let limit = req.query.limit
+            let listPerPage = limit ? limit : config.listPerPage
 
-            const offset = helper.getOffset(page, listPerPage);
+            const offset = helper.getOffset(page, listPerPage)
             const rows = await db.query(
                 `call GET_ALL_PATIENTS(${offset},${listPerPage})`
-            );
-            const data = helper.emptyOrRows(rows);
-            const totalNumber = (data[0][0] ? data[0][0]['number_of_rows'] : 0);
-            const count = (totalNumber) - offset > listPerPage ? listPerPage : (totalNumber) - offset > 0 ? (totalNumber) - offset : 0;
-            data[1]['offset'] = offset;
-            data[1]['page'] = page;
-            data[1]['count'] = count;
-            data[1]['totalNumber'] = totalNumber;
-            data[1]['limit'] = listPerPage;
+            )
+            const data = helper.emptyOrRows(rows)
+            const totalNumber = (data[0][0] ? data[0][0]['number_of_rows'] : 0)
+            const count = (totalNumber) - offset > listPerPage ? listPerPage : (totalNumber) - offset > 0 ? (totalNumber) - offset : 0
+            data[1]['offset'] = offset
+            data[1]['page'] = page
+            data[1]['count'] = count
+            data[1]['totalNumber'] = totalNumber
+            data[1]['limit'] = listPerPage
             const hasmore = data != [] ? helper.hasmore(listPerPage, count) : false
-            data[1]['hasmore'] = hasmore;
-            res.json({ message: "success fetched all patients", data });
+            data[1]['hasmore'] = hasmore
+            res.json({ message: "success fetched all patients", data })
 
         } catch (error) {
-            res.json({ message: "fail", error: error.message });
+            res.json({ message: "fail", error: error.message })
 
         }
     }
+
     static getPatient = async (req, res) => {
         try {
 
 
             const rows = await db.query(
                 `call GET_PATIENT(${req.params.id})`
-            );
-            const data = helper.emptyOrRows(rows);
+            )
+            const data = helper.emptyOrRows(rows)
 
-            res.json({ message: "success fetched  patient", data });
+            res.json({ message: "success fetched  patient", data })
 
         } catch (error) {
-            res.json({ message: "fail", error: error.message });
+            res.json({ message: "fail", error: error.message })
 
         }
     }
@@ -50,8 +51,8 @@ class PatientController {
     static addPatient = async (req, res) => {
         const patient = req.body
         console.log(patient)
-        try {
 
+        try {
             let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME
             let PATIENT_LAST_NAME_V = patient.PATIENT_LAST_NAME
             let PATIENT_EMAIL_V = patient.PATIENT_EMAIL
@@ -61,54 +62,93 @@ class PatientController {
             let PATIENT_GENDER_V = patient.PATIENT_GENDER
             let DOB_V = patient.DOB
 
-            const HASHED_PASSWORD_V = await helper.hashingPassword(PATIENT_PASS_V);
+            const HASHED_PASSWORD_V = await helper.hashingPassword(PATIENT_PASS_V)
 
             const rows = await db.query(
-                `call ADD_NEW_PATIENT('${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${HASHED_PASSWORD_V},'${PATIENT_PHONE_V}','${PATIENT_ADDRESS_V}','${PATIENT_GENDER_V}','${DOB_V}')`
-            );
-            const data = helper.emptyOrRows(rows);
-            res.json({ message: "Success PATIENT IS ADDED", data });
+                `call ADD_NEW_PATIENT('${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${HASHED_PASSWORD_V},'${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${PATIENT_GENDER_V}','${DOB_V}')`
+            )
+
+            const data = helper.emptyOrRows(rows)
+            res.json({ message: "Success PATIENT IS ADDED", data })
 
         } catch (error) {
-            res.json({ message: "failed Process", error: error.message });
+            res.json({ message: "failed Process", error: error.message })
 
         }
     }
 
     static editPatient = async (req, res) => {
         const patient = req.body
+
         try {
             let PATIENT_ID_V = req.params.id
-            let PATIENT_FUID_V = patient.FUID? req.body.FUID:null
-            let PATIENT_STATUS_V = patient.STATUS? req.body.STATUS:null
-            let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME? req.body.PATIENT_FIRST_NAME:null
-            let PATIENT_LAST_NAME_V = patient.PATIENT_LAST_NAME? req.body.PATIENT_LAST_NAME:null
-            let PATIENT_EMAIL_V = req.body.PATIENT_EMAIL? req.body.PATIENT_EMAIL:null
-            let PATIENT_PASS_V = req.body.PATIENT_PASSWORD ? req.body.PATIENT_PASSWORD:null
-            let PATIENT_ADDRESS_V = patient.PATIENT_ADDRESS? req.body.PATIENT_ADDRESS:null
-            let PATIENT_PHONE_V = req.body.PATIENT_PHONE? req.body.PATIENT_PHONE:null
-            let PATIENT_GENDER_V = req.body.PATIENT_GENDER? req.body.PATIENT_GENDER:null
-            let DOB_V = req.body.DOB? req.body.DOB:null
-            let PATIENT_WEIGHT_V = req.body.PATIENT_WEIGHT? req.body.PATIENT_WEIGHT:null
-            let PATIENT_HEIGHT_V = req.body.PATIENT_HEIGHT? req.body.PATIENT_HEIGHT:null
-            let PATIENT_SYMPTOM_V = req.body.PATIENT_SYMPTOM? req.body.PATIENT_SYMPTOM:null
-            let PATIENT_PHOTO_V = req.body.PATIENT_PHOTO? req.body.PATIENT_PHOTO:null
+            let PATIENT_FUID_V = patient.FUID ? req.body.FUID : null
+            let PATIENT_STATUS_V = patient.STATUS ? req.body.STATUS : null
+            let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME ? req.body.PATIENT_FIRST_NAME : null
+            let PATIENT_LAST_NAME_V = patient.PATIENT_LAST_NAME ? req.body.PATIENT_LAST_NAME : null
+            let PATIENT_EMAIL_V = req.body.PATIENT_EMAIL ? req.body.PATIENT_EMAIL : null
+            let PATIENT_PASS_V = req.body.PATIENT_PASSWORD ? req.body.PATIENT_PASSWORD : null
+            let PATIENT_ADDRESS_V = patient.PATIENT_ADDRESS ? req.body.PATIENT_ADDRESS : null
+            let PATIENT_PHONE_V = req.body.PATIENT_PHONE ? req.body.PATIENT_PHONE : null
+            let DOB_V = req.body.DOB ? req.body.DOB : null
+            let PATIENT_WEIGHT_V = req.body.PATIENT_WEIGHT ? req.body.PATIENT_WEIGHT : null
+            let PATIENT_HEIGHT_V = req.body.PATIENT_HEIGHT ? req.body.PATIENT_HEIGHT : null
+            let PATIENT_PHOTO_V = req.body.PATIENT_PHOTO ? req.body.PATIENT_PHOTO : null
 
-            
-            if(PATIENT_PASS_V){
 
-                PATIENT_PASS_V = await helper.hashingPassword(PATIENT_PASS_V);
+            if (PATIENT_PASS_V) {
+                PATIENT_PASS_V = await helper.hashingPassword(PATIENT_PASS_V)
             }
 
             const rows = await db.query(
-                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_FUID_V}','${PATIENT_STATUS_V}','${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${PATIENT_PASS_V},'${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${PATIENT_GENDER_V}','${DOB_V}','${PATIENT_WEIGHT_V}','${PATIENT_HEIGHT_V}','${PATIENT_PHOTO_V}','${PATIENT_SYMPTOM_V}')`
-            );
-            const data = helper.emptyOrRows(rows);
-            res.json({ message: "Success PATIENT IS MODIFIED", data });
+                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_FUID_V}','${PATIENT_STATUS_V}','${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}','${PATIENT_PASS_V}','${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${DOB_V}','${PATIENT_WEIGHT_V}','${PATIENT_HEIGHT_V}','${PATIENT_PHOTO_V}')`
+            )
+            const data = helper.emptyOrRows(rows)
+            res.json({ message: "Success PATIENT IS MODIFIED", data })
+        } catch (error) {
+            res.json({ message: "failed Process", error: error.message })
+
+        }
+    }
+
+    static addSymptom = async (req, res) => {
+        const patient = req.body
+
+        try {
+            let patient_id = patient.id
+            let symptom = patient.symptom ? patient.symptom : null
+
+            const rows = await db.query(
+                `INSERT INTO patient_symptoms (patient_id, symptom) VALUES (${patient_id}, '${symptom}')`
+            )
+
+            const data = helper.emptyOrRows(rows)
+            res.json({ message: "Success added symptom", data })
 
         } catch (error) {
-            res.json({ message: "failed Process", error: error.message });
+            res.json({ message: "failed Process", error: error.message })
+        }
+    }
 
+    static getDoctors = async (req, res) => {
+        try {
+            let patient_id = req.query.id ? req.query.id : null
+            console.log({ patient_id })
+
+            const rows = await db.query(
+                `select Doctor_ID, Doctor_Status, FUID, F_Name, L_Name, Email, Address, Gender, DOB, Specialization, Phone, Photo, Bio
+                from mobicare.sys_patient_has_doctor
+                JOIN mobicare.sys_doctor
+                ON mobicare.sys_patient_has_doctor.Doctor_ID = mobicare.sys_doctor.ID 
+                where Patient_ID = ${patient_id};`
+            )
+
+            const data = helper.emptyOrRows(rows)
+            res.json({ message: "Success get doctors", data })
+
+        } catch (error) {
+            console.log(error)
+            res.json({ message: "failed Process" })
         }
     }
 }
