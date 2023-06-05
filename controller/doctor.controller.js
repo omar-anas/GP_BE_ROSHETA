@@ -3,6 +3,7 @@ const db = require("../DB/exectuemysql");
 const helper = require("../DB/helper");
 const config = require("../DB/mysqlconfig");
 const url = require("url");
+const { error } = require("console");
 
 require("dotenv");
 
@@ -116,7 +117,13 @@ class DoctorController {
         `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_FUID_V}','${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${DOCTOR_PASS_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${BIO_V}','${PHOTO_V}','${VIDEO_V}')`
       );
       const data = helper.emptyOrRows(rows);
-      res.json({ message: "Success DOCTOR IS MODIFIED", data });
+      if(data['affectedRows']){
+        const rows = await db.query(`call GET_DOCTOR(${DOCTOR_ID_V})`);
+        const data = helper.emptyOrRows(rows);
+        res.json({ message: "Success DOCTOR IS MODIFIED", data });
+      }else{
+        throw new error
+      }
     } catch (error) {
       res.json({ message: "failed Process", error: error.message });
     }
@@ -230,7 +237,16 @@ class DoctorController {
             )
 
             const data = helper.emptyOrRows(rows)
-            res.json({ message: "Success added symptom", data })
+
+
+
+            if(data['affectedRows']){
+              const rows = await db.query(`select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`);
+              const data = helper.emptyOrRows(rows);
+              res.json({ message: "Success added noted", data })
+            }else{
+              throw new error
+            }
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message })
@@ -240,19 +256,30 @@ class DoctorController {
 
   static editNote = async (req, res) =>{
     try {
+      let NOTE_ID_V = req.body.NOTE_ID ? req.body.NOTE_ID : null
       let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
       let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
       let NOTE_V = req.body.NOTE ? req.body.NOTE : null
       let currentDate = await helper.getCurrent()
+
+
       
 
 
       const rows = await db.query(
-          `UPDATE sys_note SET NoteContent = '${NOTE_V}' , Creation_Date ='${currentDate}' where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} `
+          `UPDATE sys_note SET Doctor_ID=${DOCTOR_ID_V} , Patient_ID=${PATIENT_ID_V}, NoteContent = '${NOTE_V}' , Creation_Date ='${currentDate}' where Note_ID = ${NOTE_ID_V} `
       )
+      
 
       const data = helper.emptyOrRows(rows)
-      res.json({ message: "Success added symptom", data })
+
+      if(data['affectedRows']){
+        const rows = await db.query(`select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`);
+        const data = helper.emptyOrRows(rows);
+        res.json({ message: "Success modified note", data })
+      }else{
+        throw new error
+      }
 
   } catch (error) {
       res.json({ message: "failed Process", error: error.message })
@@ -274,7 +301,7 @@ class DoctorController {
       )
 
       const data = helper.emptyOrRows(rows)
-      res.json({ message: "Success added symptom", data })
+      res.json({ message: "Success deleted note", data })
 
   } catch (error) {
       res.json({ message: "failed Process", error: error.message })

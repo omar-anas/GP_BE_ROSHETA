@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 const doctorAuth = async (req, res, next) => {
     try {
-        console.log("working");
+        
         const token = req.header("Authorization").replace("Bearer ", "")
         const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         
