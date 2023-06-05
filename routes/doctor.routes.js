@@ -11,5 +11,9 @@ router.get('/search',DoctorController.searchDoctorByName);
 router.post('/assignPatient',DoctorController.addDoctorPatient);
 router.get('/getDoctorPatients/:id',DoctorController.getDoctorPatients);
 
+router.post('/addNote',doctorMiddleware,DoctorController.addNote)
+router.patch('/editNote',doctorMiddleware,DoctorController.editNote)
+router.get('/getNote',doctorMiddleware,DoctorController.getNote)
+router.delete('/delNote',doctorMiddleware,DoctorController.delNote)
 
 module.exports = router;

@@ -196,6 +196,90 @@ class DoctorController {
       res.json({ message: "failed Process" });
     }
   };
+
+
+  static getNote = async (req, res) =>{
+    try {
+      let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null;
+      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null;
+
+      const rows = await db.query(
+        `select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`
+      );
+
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Result", data });
+    } catch (error) {
+      console.log(error);
+      res.json({ message: "failed Process" });
+    }
+  }
+  static addNote = async (req, res) =>{
+ 
+
+        try {
+            let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
+            let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
+            let NOTE_V = req.body.NOTE ? req.body.NOTE : null
+            let currentDate = await helper.getCurrent()
+            
+
+
+            const rows = await db.query(
+                `INSERT INTO sys_note (Doctor_ID , Patient_ID, NoteContent , Creation_Date) VALUES (${DOCTOR_ID_V}, ${PATIENT_ID_V},'${NOTE_V}','${currentDate}' )`
+            )
+
+            const data = helper.emptyOrRows(rows)
+            res.json({ message: "Success added symptom", data })
+
+        } catch (error) {
+            res.json({ message: "failed Process", error: error.message })
+        }
+  }
+
+
+  static editNote = async (req, res) =>{
+    try {
+      let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
+      let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
+      let NOTE_V = req.body.NOTE ? req.body.NOTE : null
+      let currentDate = await helper.getCurrent()
+      
+
+
+      const rows = await db.query(
+          `UPDATE sys_note SET NoteContent = '${NOTE_V}' , Creation_Date ='${currentDate}' where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} `
+      )
+
+      const data = helper.emptyOrRows(rows)
+      res.json({ message: "Success added symptom", data })
+
+  } catch (error) {
+      res.json({ message: "failed Process", error: error.message })
+  }
+ }
+
+
+  static delNote = async (req, res) =>{
+    try {
+      let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
+      let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
+      let NOTE_V = req.body.NOTE ? req.body.NOTE : null
+      let currentDate = await helper.getCurrent()
+      
+
+
+      const rows = await db.query(
+          `DELETE FROM sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} `
+      )
+
+      const data = helper.emptyOrRows(rows)
+      res.json({ message: "Success added symptom", data })
+
+  } catch (error) {
+      res.json({ message: "failed Process", error: error.message })
+  }
+  }
 }
 
 module.exports = DoctorController;
