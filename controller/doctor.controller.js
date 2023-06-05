@@ -7,6 +7,7 @@ const url = require("url");
 require("dotenv");
 
 class DoctorController {
+
   static getAllDoctors = async (req, res) => {
     try {
       let page = req.query.page;
@@ -23,8 +24,8 @@ class DoctorController {
         totalNumber - offset > listPerPage
           ? listPerPage
           : totalNumber - offset > 0
-          ? totalNumber - offset
-          : 0;
+            ? totalNumber - offset
+            : 0;
 
       data[1]["offset"] = offset;
       data[1]["page"] = page;
@@ -38,53 +39,38 @@ class DoctorController {
       res.json({ message: "fail", error: error.message });
     }
   };
+
   static getDoctor = async (req, res) => {
+    let doctor_id = req.params.id
+
     try {
-      const rows = await db.query(`call GET_DOCTOR(${req.params.id})`);
-      const data = helper.emptyOrRows(rows);
+      let doctor_data = await db.query(`call GET_DOCTOR(${doctor_id})`);
+      doctor_data = helper.emptyOrRows(doctor_data)
 
-      res.json({ message: "success fetched  doctor", data });
-    } catch (error) {
-      res.json({ message: "fail", error: error.message });
-    }
-  };
-
-  static addDoctor = async (req, res) => {
-    const doctor = req.body;
-    try {
-      let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID;
-      let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME;
-      let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME;
-      let DOCTOR_EMAIL_V = doctor.DOCTOR_EMAIL ? doctor.DOCTOR_EMAIL : null;
-      let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD;
-      let ADDRESS_V = doctor.ADDRESS;
-      let GENDER_V = req.body.GENDER;
-      let DOB_V = req.body.DOB;
-      let SPECIALIZATION_V = req.body.SPECIALIZATION;
-      let PHONE_V = req.body.PHONE;
-      let PHOTO_V = req.body.PHOTO ? doctor.PHOTO : null;
-
-      if (!DOCTOR_EMAIL_V) {
-        DOCTOR_EMAIL_V = helper.doctorEmailGenerator(
-          DOCTOR_FIRST_NAME_V,
-          DOCTOR_LAST_NAME_V
-        );
-      }
-      const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
-      const rows = await db.query(
-        `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}',${GENDER_V},'${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${PHOTO_V}')`
+      let doctor_patients = await db.query(
+        `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone
+          from mobicare.sys_patient_has_doctor
+          JOIN mobicare.sys_patient
+          ON mobicare.sys_patient_has_doctor.Patient_ID = mobicare.sys_patient.ID 
+          where Doctor_ID = ${doctor_id} ;`
       );
-      const data = helper.emptyOrRows(rows);
-      res.json({ message: "Success DOCTOR IS ADDED", data });
+      doctor_patients = helper.emptyOrRows(doctor_patients)
+
+      let data = doctor_data[0][0]
+      data.patients = doctor_patients
+
+      res.json({ message: "success fetched doctor", data })
+
     } catch (error) {
-      res.json({ message: "failed Process", error: error.message });
+      res.json({ message: "failed process", error: error.message })
+
     }
-  };
+  }
 
   static editDoctor = async (req, res) => {
     const doctor = req.body;
     try {
-      let DOCTOR_ID_V = req.params.id?req.params.id:req.ID;
+      let DOCTOR_ID_V = req.params.id ? req.params.id : req.ID;
       let DOCTOR_FUID_V = doctor.FUID ? req.body.FUID : null;
       let DOCTOR_STATUS_V = doctor.STATUS ? doctor.STATUS : null;
       let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID ? doctor.ADMIN_ID : null;
@@ -122,6 +108,59 @@ class DoctorController {
     }
   };
 
+  static addDoctor = async (req, res) => {
+    const doctor = req.body;
+    try {
+      let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID;
+      let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME;
+      let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME;
+      let DOCTOR_EMAIL_V = doctor.DOCTOR_EMAIL ? doctor.DOCTOR_EMAIL : null;
+      let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD;
+      let ADDRESS_V = doctor.ADDRESS;
+      let GENDER_V = req.body.GENDER;
+      let DOB_V = req.body.DOB;
+      let SPECIALIZATION_V = req.body.SPECIALIZATION;
+      let PHONE_V = req.body.PHONE;
+      let PHOTO_V = req.body.PHOTO ? doctor.PHOTO : null;
+
+      if (!DOCTOR_EMAIL_V) {
+        DOCTOR_EMAIL_V = helper.doctorEmailGenerator(
+          DOCTOR_FIRST_NAME_V,
+          DOCTOR_LAST_NAME_V
+        );
+      }
+      const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
+      const rows = await db.query(
+        `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}',${GENDER_V},'${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${PHOTO_V}')`
+      );
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Success DOCTOR IS ADDED", data });
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message });
+    }
+  };
+
+  static addFUID = async (req, res) => {
+    const doctor = req.body
+
+    try {
+      let doctor_id = doctor.id
+      let FUID = doctor.fuid
+
+      await db.query(
+        `UPDATE mobicare.sys_doctor
+                SET FUID = '${FUID}'
+                WHERE(ID = ${doctor_id});`
+      )
+
+      res.json({ message: "Success FUID is added" })
+
+    } catch (error) {
+      res.json({ message: "Failed process", error: error.message })
+
+    }
+  }
+
   static searchDoctorByName = async (req, res) => {
     let doctor = req.query;
     console.log(doctor);
@@ -144,11 +183,12 @@ class DoctorController {
       res.json({ message: "failed Process", error: error.message });
     }
   };
+
   static searchDoctorBySpecialization = async (req, res) => {
     let doctor = req.query;
-   
+
     try {
-      let SPECIALIZATION_V = doctor.SPECIALIZATION? doctor.SPECIALIZATION: null;
+      let SPECIALIZATION_V = doctor.SPECIALIZATION ? doctor.SPECIALIZATION : null;
 
       const rows = await db.query(
         `select * from sys_doctor where Specialization LIKE '${SPECIALIZATION_V}%' `
@@ -179,14 +219,16 @@ class DoctorController {
     }
   };
 
-
-
   static getDoctorPatients = async (req, res) => {
     try {
       let DOCTOR_ID_V = req.params.id ? req.params.id : null;
 
       const rows = await db.query(
-        `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Symptoms, Phone from mobicare.sys_patient_has_doctor JOIN mobicare.sys_patient ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID  where Doctor_ID = ${DOCTOR_ID_V} ;`
+        `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Symptoms, Phone
+          from mobicare.sys_patient_has_doctor
+          JOIN mobicare.sys_patient
+          ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID 
+          where Doctor_ID = ${DOCTOR_ID_V} ;`
       );
 
       const data = helper.emptyOrRows(rows);

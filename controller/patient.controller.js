@@ -32,18 +32,39 @@ class PatientController {
     }
 
     static getPatient = async (req, res) => {
+        let patient_id = req.params.id
+
         try {
-
-
-            const rows = await db.query(
-                `call GET_PATIENT(${req.params.id})`
+            let patient_data = await db.query(
+                `call GET_PATIENT(${patient_id})`
             )
-            const data = helper.emptyOrRows(rows)
+            patient_data = helper.emptyOrRows(patient_data)
 
-            res.json({ message: "success fetched  patient", data })
+            let patinet_symptoms = await db.query(
+                `SELECT *
+                    FROM patient_symptoms 
+                    WHERE patient_id = '${patient_id}';`
+            )
+            patinet_symptoms = helper.emptyOrRows(patinet_symptoms)
+
+            let patinet_doctors = await db.query(
+                `select Doctor_ID, Doctor_Status, FUID, F_Name, L_Name, Email, Address, Gender, DOB, Specialization, Phone, Photo, Bio
+                from mobicare.sys_patient_has_doctor
+                JOIN mobicare.sys_doctor
+                ON mobicare.sys_patient_has_doctor.Doctor_ID = mobicare.sys_doctor.ID 
+                where Patient_ID = ${patient_id};`
+            )
+            patinet_doctors = helper.emptyOrRows(patinet_doctors)
+
+
+            let data = patient_data[0][0]
+            data.symptoms = patinet_symptoms
+            data.doctors = patinet_doctors
+
+            res.json({ message: "success fetched patient", data })
 
         } catch (error) {
-            res.json({ message: "fail", error: error.message })
+            res.json({ message: "failed process", error: error.message })
 
         }
     }
@@ -73,6 +94,27 @@ class PatientController {
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message })
+
+        }
+    }
+
+    static addFUID = async (req, res) => {
+        const patient = req.body
+
+        try {
+            let patient_id = patient.id
+            let FUID = patient.fuid
+
+            await db.query(
+                `UPDATE mobicare.sys_patient
+                    SET FUID = '${FUID}'
+                    WHERE(ID = ${patient_id});`
+            )
+
+            res.json({ message: "Success FUID is added" })
+
+        } catch (error) {
+            res.json({ message: "Failed process", error: error.message })
 
         }
     }
@@ -118,13 +160,22 @@ class PatientController {
             let patient_id = patient.id
             let symptom = patient.symptom ? patient.symptom : null
 
-            const rows = await db.query(
+            db.query(
                 `INSERT INTO patient_symptoms (patient_id, symptom) VALUES (${patient_id}, '${symptom}')`
             )
+                .then(async () => {
+                    let rows = await db.query(
+                        `SELECT *
+                        FROM patient_symptoms 
+                        WHERE patient_id = '${patient_id}';`
+                    )
 
-            const data = helper.emptyOrRows(rows)
-            res.json({ message: "Success added symptom", data })
-
+                    let data = helper.emptyOrRows(rows)
+                    res.json({ message: "Success added symptom", data })
+                })
+                .catch(error => {
+                    res.json({ error: error.message })
+                })
         } catch (error) {
             res.json({ message: "failed Process", error: error.message })
         }
@@ -141,7 +192,7 @@ class PatientController {
             )
 
             let data = helper.emptyOrRows(rows)
-            res.json({ message: "Success get symptoms", data })
+            res.json({ message: "Success got symptoms", data })
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message })

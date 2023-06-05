@@ -3,6 +3,7 @@ const PatientController = require('../controller/patient.controller')
 const patinetMiddleware = require('../middlewares/patientAuth.middleware')
 
 router.post('/register', PatientController.addPatient)
+router.put('/fuid/add', patinetMiddleware, PatientController.addFUID)
 
 router.patch('/edit/:id', patinetMiddleware, PatientController.editPatient)
 
@@ -12,6 +13,5 @@ router.delete('/symptom/delete', patinetMiddleware, PatientController.deleteSymp
 
 router.get('/get/:id', PatientController.getPatient)
 router.get('/getDoctors', patinetMiddleware, PatientController.getDoctors)
-
 
 module.exports = router
