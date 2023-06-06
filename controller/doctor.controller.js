@@ -109,7 +109,7 @@ class DoctorController {
       let BIO_V = req.body.BIO ? doctor.BIO : null;
       let PHOTO_V = req.body.PHOTO ? doctor.PHOTO : null;
       let VIDEO_V = req.body.VIDEO ? doctor.VIDEO : null;
-
+      
       if (DOCTOR_PASS_V)
         DOCTOR_PASS_V = await helper.hashingPassword(DOCTOR_PASS_V);
 
@@ -117,10 +117,12 @@ class DoctorController {
         `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_FUID_V}','${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${DOCTOR_PASS_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${BIO_V}','${PHOTO_V}','${VIDEO_V}')`
       );
       const data = helper.emptyOrRows(rows);
+  
       if(data['affectedRows']){
         const rows = await db.query(`call GET_DOCTOR(${DOCTOR_ID_V})`);
         const data = helper.emptyOrRows(rows);
-        res.json({ message: "Success DOCTOR IS MODIFIED", data });
+        
+        res.json({ message: "Success DOCTOR IS MODIFIED", data:data[0] });
       }else{
         throw new error
       }
