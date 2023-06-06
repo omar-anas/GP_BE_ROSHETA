@@ -104,7 +104,16 @@ class PatientController {
                 `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_FUID_V}','${PATIENT_STATUS_V}','${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${PATIENT_PASS_V},'${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${DOB_V}','${PATIENT_WEIGHT_V}','${PATIENT_HEIGHT_V}','${PATIENT_PHOTO_V}')`
             )
             const data = helper.emptyOrRows(rows)
-            res.json({ message: "Success PATIENT IS MODIFIED", data })
+
+            if(data['affectedRows']){
+                const rows = await db.query(`call GET_PATIENT(${PATIENT_ID_V})`);
+                const data = helper.emptyOrRows(rows);
+                
+                res.json({ message: "Success PATIENT IS MODIFIED", data:data[0]})
+              }else{
+                throw new error
+              }
+
         } catch (error) {
             res.json({ message: "failed Process", error: error.message })
 
