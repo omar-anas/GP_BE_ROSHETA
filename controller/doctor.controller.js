@@ -195,7 +195,7 @@ class DoctorController {
       let DOCTOR_ID_V = req.params.id ? req.params.id : null;
 
       const rows = await db.query(
-        `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Symptoms, Phone from mobicare.sys_patient_has_doctor JOIN mobicare.sys_patient ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID  where Doctor_ID = ${DOCTOR_ID_V} ;`
+        `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone from mobicare.sys_patient_has_doctor JOIN mobicare.sys_patient ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID  where Doctor_ID = ${DOCTOR_ID_V} ;`
       );
 
       const data = helper.emptyOrRows(rows);

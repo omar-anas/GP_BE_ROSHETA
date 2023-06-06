@@ -81,7 +81,7 @@ class PatientController {
         const patient = req.body
 
         try {
-            let PATIENT_ID_V = req.params.id
+            let PATIENT_ID_V = req.params.id?req.params.id:req.ID
             let PATIENT_FUID_V = patient.FUID ? req.body.FUID : null
             let PATIENT_STATUS_V = patient.STATUS ? req.body.STATUS : null
             let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME ? req.body.PATIENT_FIRST_NAME : null
@@ -101,7 +101,7 @@ class PatientController {
             }
 
             const rows = await db.query(
-                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_FUID_V}','${PATIENT_STATUS_V}','${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}','${PATIENT_PASS_V}','${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${DOB_V}','${PATIENT_WEIGHT_V}','${PATIENT_HEIGHT_V}','${PATIENT_PHOTO_V}')`
+                `call EDIT_PATIENT(${PATIENT_ID_V},'${PATIENT_FUID_V}','${PATIENT_STATUS_V}','${PATIENT_FIRST_NAME_V}','${PATIENT_LAST_NAME_V}','${PATIENT_EMAIL_V}',${PATIENT_PASS_V},'${PATIENT_ADDRESS_V}','${PATIENT_PHONE_V}','${DOB_V}','${PATIENT_WEIGHT_V}','${PATIENT_HEIGHT_V}','${PATIENT_PHOTO_V}')`
             )
             const data = helper.emptyOrRows(rows)
             res.json({ message: "Success PATIENT IS MODIFIED", data })

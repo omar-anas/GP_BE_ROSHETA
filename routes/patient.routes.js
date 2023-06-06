@@ -10,6 +10,6 @@ router.delete('/symptom/delete', patinetMiddleware, PatientController.deleteSymp
 router.get('/get/:id', PatientController.getPatient)
 router.get('/getDoctors', patinetMiddleware, PatientController.getDoctors)
 
-router.patch('/edit/:id', patinetMiddleware, PatientController.editPatient)
+router.patch('/edit', patinetMiddleware, PatientController.editPatient)
 
 module.exports = router
