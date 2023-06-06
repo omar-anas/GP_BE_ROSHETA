@@ -8,7 +8,7 @@ router.put('/fuid/add', patinetMiddleware, PatientController.addFUID)
 router.patch('/edit/:id', patinetMiddleware, PatientController.editPatient)
 
 router.post('/symptom/add', patinetMiddleware, PatientController.addSymptom)
-router.get('/symptom/getAll', patinetMiddleware, PatientController.getSymptoms)
+router.get('/symptom/getAll', PatientController.getSymptoms)
 router.delete('/symptom/delete', patinetMiddleware, PatientController.deleteSymptom)
 
 router.get('/get/:id', PatientController.getPatient)
