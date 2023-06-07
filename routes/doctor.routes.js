@@ -2,7 +2,7 @@ const router = require("express").Router();
 const DoctorController = require('../controller/doctor.controller')
 const doctorMiddleware = require('../middlewares/doctorAuth.middleware')
 
-router.patch('/editProfile', doctorMiddleware, DoctorController.editDoctor);
+router.patch('/editProfile/:id', doctorMiddleware, DoctorController.editDoctor);
 router.put('/fuid/add', doctorMiddleware, DoctorController.addFUID)
 
 router.post('/assignPatient',DoctorController.addDoctorPatient);
