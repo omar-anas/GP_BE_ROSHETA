@@ -8,6 +8,7 @@ router.patch('/editProfile',doctorMiddleware,DoctorController.editDoctor);
 
 router.get('/searchSpec',DoctorController.searchDoctorBySpecialization);
 router.get('/search',DoctorController.searchDoctorByName);
+router.get('/searchDoctorPatients',doctorMiddleware,DoctorController.DoctorSearchPatientsByName);
 router.post('/assignPatient',DoctorController.addDoctorPatient);
 router.get('/getDoctorPatients/:id',DoctorController.getDoctorPatients);
 

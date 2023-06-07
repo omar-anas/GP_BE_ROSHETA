@@ -309,6 +309,32 @@ class DoctorController {
       res.json({ message: "failed Process", error: error.message })
   }
   }
+
+  static DoctorSearchPatientsByName = async (req, res) => {
+    let patient = req.query;
+    try {
+
+      let PATIENT_FIRST_NAME_V = patient.FN ? patient.FN : null;
+      let PATIENT_LAST_NAME_V = patient.LN ? patient.LN : null;
+
+      let query;
+      if (PATIENT_LAST_NAME_V == null) {
+        query = `sys_patient.F_Name LIKE '${PATIENT_FIRST_NAME_V}%'`;
+      } else {
+        query = `sys_patient.F_Name LIKE '${PATIENT_FIRST_NAME_V}%' and sys_patient.L_Name LIKE '${PATIENT_LAST_NAME_V}%'`;
+      }
+
+      const rows = await db.query(`select  Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone from 
+mobicare.sys_patient JOIN mobicare.sys_patient_has_doctor ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID 
+where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
+
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Result", data });
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message });
+    }
+  };
+
 }
 
 module.exports = DoctorController;
