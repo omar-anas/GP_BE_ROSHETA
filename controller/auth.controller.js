@@ -90,7 +90,7 @@ class authController {
                 let data = helper.emptyOrRows(rows);
             data = data[0][0];
             
-            
+            let doctorPatients
             if (data) {
                 delete data.Refresh_Token_Value
                 delete data.Pass
@@ -101,10 +101,20 @@ class authController {
                     `call UPDATE_DOCTOR_REFRESHTOKEN(${data.ID},'${refreshToken}')`
                 )
 
+                 doctorPatients = await db.query(
+                    `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone from mobicare.sys_patient_has_doctor JOIN mobicare.sys_patient ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID  where Doctor_ID = ${data.ID} ;`
+                )
+                
+
+                
+
+
+
+
             } else {
                 throw new Error("wrong email or password")
             }
-            res.json({ message: "sucessfull authentication" ,accessToken, refreshToken, data , role:"DOCTOR"  })
+            res.json({ message: "sucessfull authentication" ,accessToken, refreshToken, data, doctorPatients , role:"DOCTOR"  })
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message });
