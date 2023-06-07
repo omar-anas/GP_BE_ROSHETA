@@ -209,8 +209,8 @@ class DoctorController {
 
   static getNote = async (req, res) =>{
     try {
-      let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null;
-      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null;
+      let DOCTOR_ID_V = req.query.DOCTOR_ID ? req.query.DOCTOR_ID : null;
+      let PATIENT_ID_V = req.query.PATIENT_ID ? req.query.PATIENT_ID : null;
 
       const rows = await db.query(
         `select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`
