@@ -11,9 +11,6 @@ router.get('/doctor/getAll',adminMiddleware,DoctorController.getAllDoctors);
 router.post('/doctor/add',adminMiddleware,DoctorController.addDoctor);
 router.patch('/doctor/edit/:id',adminMiddleware,DoctorController.editDoctor);
 
-
-
-
 //  Patient Routes
 router.get('/patient/getAll',adminMiddleware,PatientController.getAllPatients);
 router.get('/patient/get/:id',adminMiddleware,PatientController.getPatient);

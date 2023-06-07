@@ -64,38 +64,8 @@ class DoctorController {
 
     } catch (error) {
       res.json({ message: "failed process", error: error.message })
-
-  static addDoctor = async (req, res) => {
-    const doctor = req.body;
-    try {
-      let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID;
-      let DOCTOR_FIRST_NAME_V = doctor.DOCTOR_FIRST_NAME;
-      let DOCTOR_LAST_NAME_V = doctor.DOCTOR_LAST_NAME;
-      let DOCTOR_EMAIL_V = doctor.DOCTOR_EMAIL ? doctor.DOCTOR_EMAIL : null;
-      let DOCTOR_PASS_V = req.body.DOCTOR_PASSWORD;
-      let ADDRESS_V = doctor.ADDRESS;
-      let GENDER_V = req.body.GENDER;
-      let DOB_V = req.body.DOB;
-      let SPECIALIZATION_V = req.body.SPECIALIZATION;
-      let PHONE_V = req.body.PHONE;
-      let PHOTO_V = req.body.PHOTO ? doctor.PHOTO : null;
-
-      if (!DOCTOR_EMAIL_V) {
-        DOCTOR_EMAIL_V = helper.doctorEmailGenerator(
-          DOCTOR_FIRST_NAME_V,
-          DOCTOR_LAST_NAME_V
-        );
-      }
-      const HASHED_PASSWORD_V = await helper.hashingPassword(DOCTOR_PASS_V);
-      const rows = await db.query(
-        `call ADD_NEW_DOCTOR(${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${HASHED_PASSWORD_V},'${ADDRESS_V}',${GENDER_V},'${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${PHOTO_V}')`
-      );
-      const data = helper.emptyOrRows(rows);
-      res.json({ message: "Success DOCTOR IS ADDED", data });
-    } catch (error) {
-      res.json({ message: "failed Process", error: error.message });
     }
-  };
+  }
 
   static editDoctor = async (req, res) => {
     const doctor = req.body;
@@ -133,12 +103,12 @@ class DoctorController {
       );
       const data = helper.emptyOrRows(rows);
 
-      if(data['affectedRows']){
+      if (data['affectedRows']) {
         const rows = await db.query(`call GET_DOCTOR(${DOCTOR_ID_V})`);
         const data = helper.emptyOrRows(rows);
 
-        res.json({ message: "Success DOCTOR IS MODIFIED", data:data[0] });
-      }else{
+        res.json({ message: "Success DOCTOR IS MODIFIED", data: data[0] });
+      } else {
         throw new error
       }
     } catch (error) {
@@ -224,7 +194,7 @@ class DoctorController {
 
   static searchDoctorBySpecialization = async (req, res) => {
     let doctor = req.query;
-   
+
     try {
       let SPECIALIZATION_V = doctor.SPECIALIZATION ? doctor.SPECIALIZATION : null;
 
@@ -262,7 +232,11 @@ class DoctorController {
       let DOCTOR_ID_V = req.params.id ? req.params.id : null;
 
       const rows = await db.query(
-        `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone from mobicare.sys_patient_has_doctor JOIN mobicare.sys_patient ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID  where Doctor_ID = ${DOCTOR_ID_V} ;`
+        `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone
+          from mobicare.sys_patient_has_doctor 
+          JOIN mobicare.sys_patient
+          ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID
+          where Doctor_ID = ${DOCTOR_ID_V} ;`
       );
 
       const data = helper.emptyOrRows(rows);
@@ -273,8 +247,7 @@ class DoctorController {
     }
   };
 
-
-  static getNote = async (req, res) =>{
+  static getNote = async (req, res) => {
     try {
       let DOCTOR_ID_V = req.query.DOCTOR_ID ? req.query.DOCTOR_ID : null;
       let PATIENT_ID_V = req.query.PATIENT_ID ? req.query.PATIENT_ID : null;
@@ -290,91 +263,77 @@ class DoctorController {
       res.json({ message: "failed Process" });
     }
   }
-  static addNote = async (req, res) =>{
 
-
-        try {
-            let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
-            let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
-            let NOTE_V = req.body.NOTE ? req.body.NOTE : null
-            let currentDate = await helper.getCurrent()
-
-
-
-            const rows = await db.query(
-                `INSERT INTO sys_note (Doctor_ID , Patient_ID, NoteContent , Creation_Date) VALUES (${DOCTOR_ID_V}, ${PATIENT_ID_V},'${NOTE_V}','${currentDate}' )`
-            )
-
-            const data = helper.emptyOrRows(rows)
-
-
-
-            if(data['affectedRows']){
-              const rows = await db.query(`select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`);
-              const data = helper.emptyOrRows(rows);
-              res.json({ message: "Success added noted", data })
-            }else{
-              throw new error
-            }
-
-        } catch (error) {
-            res.json({ message: "failed Process", error: error.message })
-        }
-  }
-
-
-  static editNote = async (req, res) =>{
+  static addNote = async (req, res) => {
     try {
-      let NOTE_ID_V = req.body.NOTE_ID ? req.body.NOTE_ID : null
-      let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
+      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null
       let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
       let NOTE_V = req.body.NOTE ? req.body.NOTE : null
       let currentDate = await helper.getCurrent()
 
-
-
-
-
       const rows = await db.query(
-          `UPDATE sys_note SET Doctor_ID=${DOCTOR_ID_V} , Patient_ID=${PATIENT_ID_V}, NoteContent = '${NOTE_V}' , Creation_Date ='${currentDate}' where Note_ID = ${NOTE_ID_V} `
+        `INSERT INTO sys_note (Doctor_ID , Patient_ID, NoteContent , Creation_Date) VALUES (${DOCTOR_ID_V}, ${PATIENT_ID_V},'${NOTE_V}','${currentDate}' )`
       )
-
 
       const data = helper.emptyOrRows(rows)
 
-      if(data['affectedRows']){
+      if (data['affectedRows']) {
         const rows = await db.query(`select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`);
         const data = helper.emptyOrRows(rows);
-        res.json({ message: "Success modified note", data })
-      }else{
+        res.json({ message: "Success added noted", data })
+      } else {
         throw new error
       }
 
-  } catch (error) {
+    } catch (error) {
       res.json({ message: "failed Process", error: error.message })
+    }
   }
- }
 
-
-  static delNote = async (req, res) =>{
+  static editNote = async (req, res) => {
     try {
-      let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
+      let NOTE_ID_V = req.body.NOTE_ID ? req.body.NOTE_ID : null
+      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null
       let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
       let NOTE_V = req.body.NOTE ? req.body.NOTE : null
       let currentDate = await helper.getCurrent()
 
+      const rows = await db.query(
+        `UPDATE sys_note SET Doctor_ID=${DOCTOR_ID_V} , Patient_ID=${PATIENT_ID_V}, NoteContent = '${NOTE_V}' , Creation_Date ='${currentDate}' where Note_ID = ${NOTE_ID_V} `
+      )
 
+      const data = helper.emptyOrRows(rows)
+
+      if (data['affectedRows']) {
+        const rows = await db.query(`select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`);
+        const data = helper.emptyOrRows(rows);
+        res.json({ message: "Success modified note", data })
+      } else {
+        throw new error
+      }
+
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message })
+    }
+  }
+
+  static delNote = async (req, res) => {
+    try {
+      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null
+      let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
+      let NOTE_V = req.body.NOTE ? req.body.NOTE : null
+      let currentDate = await helper.getCurrent()
 
       const rows = await db.query(
-          `DELETE FROM sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} `
+        `DELETE FROM sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} `
       )
 
       const data = helper.emptyOrRows(rows)
       res.json({ message: "Success deleted note", data })
 
-  } catch (error) {
+    } catch (error) {
       res.json({ message: "failed Process", error: error.message })
-  }
+    }
   }
 
   static DoctorSearchPatientsByName = async (req, res) => {
@@ -391,9 +350,11 @@ class DoctorController {
         query = `sys_patient.F_Name LIKE '${PATIENT_FIRST_NAME_V}%' and sys_patient.L_Name LIKE '${PATIENT_LAST_NAME_V}%'`;
       }
 
-      const rows = await db.query(`select  Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone from
-mobicare.sys_patient JOIN mobicare.sys_patient_has_doctor ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID
-where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
+      const rows = await db.query(`select  Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone
+        from mobicare.sys_patient 
+        JOIN mobicare.sys_patient_has_doctor
+        ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID
+        where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
 
       const data = helper.emptyOrRows(rows);
       res.json({ message: "Result", data });

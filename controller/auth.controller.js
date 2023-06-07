@@ -105,12 +105,6 @@ class authController {
                     `select Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone from mobicare.sys_patient_has_doctor JOIN mobicare.sys_patient ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID  where Doctor_ID = ${data.ID} ;`
                 )
                 
-
-                
-
-
-
-
             } else {
                 throw new Error("wrong email or password")
             }
@@ -130,16 +124,12 @@ class authController {
             
             const HASHED_PASSWORD_V = await helper.hashingPassword(Patient_PASS_V);
             
-            
             const rows = await db.query(
                 `call LOGIN_PATIENT('${Patient_Email_V}',${HASHED_PASSWORD_V})`
                 )
                 
                 let data = helper.emptyOrRows(rows);
-                
                 data = data[0][0];
-                
-                
                 
                 if (data) {
                 delete data.Refresh_Token_Value
