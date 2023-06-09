@@ -361,12 +361,14 @@ where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
 
             let DOCTOR_ID_V = req.ID
             let VIDEO_URL_V = req.body.VIDEO_URL ? req.body.VIDEO_URL : null
-            let currentDate = await helper.getCurrent()
+            let VIDEO_DESC_V = req.body.VIDEO_DESC ? req.body.VIDEO_DESC : null
+            let CURRENTDATE_V = await helper.getCurrent();
             
-
+            
+        
 
             const rows = await db.query(
-                `INSERT INTO sys_videos (Doctor_ID , VIDEO_URL) VALUES (${DOCTOR_ID_V}, '${VIDEO_URL_V}')`
+                `INSERT INTO sys_videos (Doctor_ID , VIDEO_URL , Video_Desc ,CreationDate) VALUES (${DOCTOR_ID_V}, '${VIDEO_URL_V}', '${VIDEO_DESC_V}','${CURRENTDATE_V}') ;`
             )
 
             const data = helper.emptyOrRows(rows)
@@ -392,14 +394,15 @@ where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
       let VIDEO_ID_V = req.body.VIDEO_ID ? req.body.VIDEO_ID : null
       let DOCTOR_ID_V = req.ID
       let VIDEO_URL_V = req.body.VIDEO_URL? req.body.VIDEO_URL : null
+      let VIDEO_DESC_V = req.body.VIDEO_DESC? req.body.VIDEO_DESC : null
+      let VIDEO_CREATIONDATE_V = await helper.getCurrent()
       
-      console.log(req.ID)
 
       
 
 
       const rows = await db.query(
-          `UPDATE sys_videos SET Video_URL ='${VIDEO_URL_V}' where Video_ID = ${VIDEO_ID_V} AND Doctor_ID= ${DOCTOR_ID_V}`
+          `UPDATE sys_videos SET Video_URL ='${VIDEO_URL_V}' , Video_Desc ='${VIDEO_DESC_V}' where Video_ID = ${VIDEO_ID_V} AND Doctor_ID= ${DOCTOR_ID_V} `
       )
       
 
