@@ -22,7 +22,6 @@
     "mysql2": "3.2.0",
     "nodemon": "2.0.22",
     "shortid": "^2.2.16",
-    "web3.storage": "^4.5.4",
     "winston": "^3.8.2"
   },
   "main": "index.js",

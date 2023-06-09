@@ -1,11 +1,11 @@
 const { query } = require("express");
+const url = require("url");
+const { error } = require("console");
+require("dotenv");
+
 const db = require("../DB/exectuemysql");
 const helper = require("../DB/helper");
 const config = require("../DB/mysqlconfig");
-const url = require("url");
-const { error } = require("console");
-
-require("dotenv");
 
 class DoctorController {
 

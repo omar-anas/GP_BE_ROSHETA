@@ -3,6 +3,7 @@ const helper = require('../DB/helper')
 const config = require('../DB/mysqlconfig')
 
 class PatientController {
+    
     static getAllPatients = async (req, res) => {
         try {
             let page = req.query.page
@@ -13,16 +14,20 @@ class PatientController {
             const rows = await db.query(
                 `call GET_ALL_PATIENTS(${offset},${listPerPage})`
             )
+
             const data = helper.emptyOrRows(rows)
             const totalNumber = (data[0][0] ? data[0][0]['number_of_rows'] : 0)
             const count = (totalNumber) - offset > listPerPage ? listPerPage : (totalNumber) - offset > 0 ? (totalNumber) - offset : 0
+            
             data[1]['offset'] = offset
             data[1]['page'] = page
             data[1]['count'] = count
             data[1]['totalNumber'] = totalNumber
             data[1]['limit'] = listPerPage
+            
             const hasmore = data != [] ? helper.hasmore(listPerPage, count) : false
             data[1]['hasmore'] = hasmore
+    
             res.json({ message: "success fetched all patients", data })
 
         } catch (error) {
@@ -123,7 +128,7 @@ class PatientController {
         const patient = req.body
 
         try {
-            let PATIENT_ID_V = req.params.id?req.params.id:req.ID
+            let PATIENT_ID_V = req.params.id ? req.params.id : req.ID
             let PATIENT_FUID_V = patient.FUID ? req.body.FUID : null
             let PATIENT_STATUS_V = patient.STATUS ? req.body.STATUS : null
             let PATIENT_FIRST_NAME_V = patient.PATIENT_FIRST_NAME ? req.body.PATIENT_FIRST_NAME : null
@@ -137,7 +142,6 @@ class PatientController {
             let PATIENT_HEIGHT_V = req.body.PATIENT_HEIGHT ? req.body.PATIENT_HEIGHT : null
             let PATIENT_PHOTO_V = req.body.PATIENT_PHOTO ? req.body.PATIENT_PHOTO : null
 
-
             if (PATIENT_PASS_V) {
                 PATIENT_PASS_V = await helper.hashingPassword(PATIENT_PASS_V)
             }
@@ -147,14 +151,14 @@ class PatientController {
             )
             const data = helper.emptyOrRows(rows)
 
-            if(data['affectedRows']){
+            if (data['affectedRows']) {
                 const rows = await db.query(`call GET_PATIENT(${PATIENT_ID_V})`);
                 const data = helper.emptyOrRows(rows);
-                
-                res.json({ message: "Success PATIENT IS MODIFIED", data:data[0]})
-              }else{
+
+                res.json({ message: "Success PATIENT IS MODIFIED", data: data[0] })
+            } else {
                 throw new error
-              }
+            }
 
         } catch (error) {
             res.json({ message: "failed Process", error: error.message })
