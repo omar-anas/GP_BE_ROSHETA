@@ -337,6 +337,128 @@ where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
     }
   };
 
+
+
+  static getVideo = async (req, res) =>{
+    try {
+      let DOCTOR_ID_V = req.params.DOCTOR_ID ? req.params.DOCTOR_ID : req.ID;
+
+      const rows = await db.query(
+        `select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V}`
+      );
+
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Result", data });
+    } catch (error) {
+      console.log(error);
+      res.json({ message: "failed Process" });
+    }
+  }
+  static addVideo = async (req, res) =>{
+ 
+
+        try {
+
+            let DOCTOR_ID_V = req.ID
+            let VIDEO_URL_V = req.body.VIDEO_URL ? req.body.VIDEO_URL : null
+            let currentDate = await helper.getCurrent()
+            
+
+
+            const rows = await db.query(
+                `INSERT INTO sys_videos (Doctor_ID , VIDEO_URL) VALUES (${DOCTOR_ID_V}, '${VIDEO_URL_V}')`
+            )
+
+            const data = helper.emptyOrRows(rows)
+
+
+
+            if(data['affectedRows']){
+              const rows = await db.query(`select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V} ;`);
+              const data = helper.emptyOrRows(rows);
+              res.json({ message: "Success added video", data })
+            }else{
+              throw new error
+            }
+
+        } catch (error) {
+            res.json({ message: "failed Process", error: error.message })
+        }
+  }
+
+
+  static editVideo = async (req, res) =>{
+    try {
+      let VIDEO_ID_V = req.body.VIDEO_ID ? req.body.VIDEO_ID : null
+      let DOCTOR_ID_V = req.ID
+      let VIDEO_URL_V = req.body.VIDEO_URL? req.body.VIDEO_URL : null
+      
+      console.log(req.ID)
+
+      
+
+
+      const rows = await db.query(
+          `UPDATE sys_videos SET Video_URL ='${VIDEO_URL_V}' where Video_ID = ${VIDEO_ID_V} AND Doctor_ID= ${DOCTOR_ID_V}`
+      )
+      
+
+      const data = helper.emptyOrRows(rows)
+
+      if(data['affectedRows']){
+        const rows = await db.query(`select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V} ;`);
+        const data = helper.emptyOrRows(rows);
+        res.json({ message: "Success modified note", data })
+      }else{
+        throw new error
+      }
+
+  } catch (error) {
+      res.json({ message: "failed Process", error: error.message })
+  }
+ }
+
+
+  static delVideo = async (req, res) =>{
+    try {
+      let DOCTOR_ID_V = req.ID
+      let VIDEO_ID_V = req.params.id ?req.params.id : null
+      
+      
+      
+      
+
+
+      const rows = await db.query(
+          `DELETE FROM sys_videos where Video_ID = ${VIDEO_ID_V} AND Doctor_ID=${DOCTOR_ID_V};`
+      )
+
+      const data = helper.emptyOrRows(rows)
+
+      if(data['affectedRows']){
+        const rows = await db.query(`select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V} ;`);
+        const data = helper.emptyOrRows(rows);
+        res.json({ message: "Success added video", data })
+        
+      }else{
+        throw new error
+      }
+
+  } catch (error) {
+      res.json({ message: "failed Process", error: error.message })
+  }
+  }
+
+
+
+
+
+
+
+
+
+
+
 }
 
 module.exports = DoctorController;

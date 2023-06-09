@@ -12,6 +12,12 @@ router.get('/searchDoctorPatients',doctorMiddleware,DoctorController.DoctorSearc
 router.post('/assignPatient',DoctorController.addDoctorPatient);
 router.get('/getDoctorPatients/:id',DoctorController.getDoctorPatients);
 
+router.post('/addVideo',doctorMiddleware,DoctorController.addVideo)
+router.patch('/editVideo',doctorMiddleware,DoctorController.editVideo)
+router.get('/getVideo/:DOCTOR_ID',doctorMiddleware,DoctorController.getVideo)
+router.delete('/delVideo/:id',doctorMiddleware,DoctorController.delVideo)
+
+
 router.post('/addNote',doctorMiddleware,DoctorController.addNote)
 router.patch('/editNote',doctorMiddleware,DoctorController.editNote)
 router.get('/getNote',doctorMiddleware,DoctorController.getNote)
