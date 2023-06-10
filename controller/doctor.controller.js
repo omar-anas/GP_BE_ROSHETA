@@ -453,7 +453,24 @@ where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
   }
 
 
+  static getAllVideo = async (req,res)=>{
 
+    try {
+
+
+      const rows = await db.query(
+        `select mobicare.sys_videos.*,mobicare.sys_doctor.F_Name ,mobicare.sys_doctor.L_Name ,mobicare.sys_doctor.Gender from mobicare.sys_videos JOIN sys_doctor ON mobicare.sys_doctor.ID = mobicare.sys_videos.Doctor_ID `
+      );
+
+      const data = helper.emptyOrRows(rows);
+      res.json({ message: "Result", data });
+    } catch (error) {
+     
+      res.json({ message: "failed Process" });
+    }
+
+
+  }
 
 
 
