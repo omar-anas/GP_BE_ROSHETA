@@ -24,8 +24,8 @@ class DoctorController {
         totalNumber - offset > listPerPage
           ? listPerPage
           : totalNumber - offset > 0
-          ? totalNumber - offset
-          : 0;
+            ? totalNumber - offset
+            : 0;
 
       data[1]["offset"] = offset;
       data[1]["page"] = page;
@@ -39,6 +39,7 @@ class DoctorController {
       res.json({ message: "fail", error: error.message });
     }
   };
+
   static getDoctor = async (req, res) => {
     try {
       const rows = await db.query(`call GET_DOCTOR(${req.params.id})`);
@@ -82,10 +83,31 @@ class DoctorController {
     }
   };
 
+  static addFUID = async (req, res) => {
+    const doctor = req.body
+
+    try {
+      let doctor_id = doctor.id
+      let FUID = doctor.fuid
+
+      await db.query(
+        `UPDATE mobicare.sys_doctor
+                SET FUID = '${FUID}'
+                WHERE(ID = ${doctor_id});`
+      )
+
+      res.json({ message: "Success FUID is added" })
+
+    } catch (error) {
+      res.json({ message: "Failed process", error: error.message })
+
+    }
+  }
+
   static editDoctor = async (req, res) => {
     const doctor = req.body;
     try {
-      let DOCTOR_ID_V = req.params.id?req.params.id:req.ID;
+      let DOCTOR_ID_V = req.params.id ? req.params.id : req.ID;
       let DOCTOR_FUID_V = doctor.FUID ? req.body.FUID : null;
       let DOCTOR_STATUS_V = doctor.STATUS ? doctor.STATUS : null;
       let DOCTOR_ADMIN_ID_V = doctor.ADMIN_ID ? doctor.ADMIN_ID : null;
@@ -109,8 +131,8 @@ class DoctorController {
       let BIO_V = req.body.BIO ? doctor.BIO : null;
       let PHOTO_V = req.body.PHOTO ? doctor.PHOTO : null;
       let VIDEO_V = req.body.VIDEO ? doctor.VIDEO : null;
-      
-      
+
+
       if (DOCTOR_PASS_V)
         DOCTOR_PASS_V = await helper.hashingPassword(DOCTOR_PASS_V);
 
@@ -118,15 +140,15 @@ class DoctorController {
         `call EDIT_DOCTOR(${DOCTOR_ID_V},'${DOCTOR_FUID_V}','${DOCTOR_STATUS_V}',${DOCTOR_ADMIN_ID_V},'${DOCTOR_FIRST_NAME_V}','${DOCTOR_LAST_NAME_V}','${DOCTOR_EMAIL_V}',${DOCTOR_PASS_V},'${ADDRESS_V}','${GENDER_V}','${DOB_V}','${SPECIALIZATION_V}','${PHONE_V}','${PHOTO_V}','${VIDEO_V}','${BIO_V}')`
       );
       const data = helper.emptyOrRows(rows);
-  
-      if(data['affectedRows']){
+
+      if (data['affectedRows']) {
         const rows = await db.query(`call GET_DOCTOR(${DOCTOR_ID_V})`);
         const data = helper.emptyOrRows(rows);
         delete data[0][0].Refresh_Token_Value
         delete data[0][0].Pass
-        
-        res.json({ message: "Success DOCTOR IS MODIFIED", data:data[0] });
-      }else{
+
+        res.json({ message: "Success DOCTOR IS MODIFIED", data: data[0] });
+      } else {
         throw new error
       }
     } catch (error) {
@@ -156,11 +178,12 @@ class DoctorController {
       res.json({ message: "failed Process", error: error.message });
     }
   };
+
   static searchDoctorBySpecialization = async (req, res) => {
     let doctor = req.query;
-   
+
     try {
-      let SPECIALIZATION_V = doctor.SPECIALIZATION? doctor.SPECIALIZATION: null;
+      let SPECIALIZATION_V = doctor.SPECIALIZATION ? doctor.SPECIALIZATION : null;
 
       const rows = await db.query(
         `select * from sys_doctor where Specialization LIKE '${SPECIALIZATION_V}%' `
@@ -191,8 +214,6 @@ class DoctorController {
     }
   };
 
-
-
   static getDoctorPatients = async (req, res) => {
     try {
       let DOCTOR_ID_V = req.params.id ? req.params.id : null;
@@ -209,13 +230,12 @@ class DoctorController {
     }
   };
 
-
-  static getNote = async (req, res) =>{
+  static getNote = async (req, res) => {
     try {
       let DOCTOR_ID_V = req.query.DOCTOR_ID ? req.query.DOCTOR_ID : req.ID;
       let PATIENT_ID_V = req.query.PATIENT_ID ? req.query.PATIENT_ID : null;
 
-      console.log(DOCTOR_ID_V,PATIENT_ID_V)
+      console.log(DOCTOR_ID_V, PATIENT_ID_V)
       const rows = await db.query(
         `select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`
       );
@@ -227,91 +247,77 @@ class DoctorController {
       res.json({ message: "failed Process" });
     }
   }
-  static addNote = async (req, res) =>{
- 
 
-        try {
-            let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
-            let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
-            let NOTE_V = req.body.NOTE ? req.body.NOTE : null
-            let currentDate = await helper.getCurrent()
-            
-
-
-            const rows = await db.query(
-                `INSERT INTO sys_note (Doctor_ID , Patient_ID, NoteContent , Creation_Date) VALUES (${DOCTOR_ID_V}, ${PATIENT_ID_V},'${NOTE_V}','${currentDate}' )`
-            )
-
-            const data = helper.emptyOrRows(rows)
-
-
-
-            if(data['affectedRows']){
-              const rows = await db.query(`select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`);
-              const data = helper.emptyOrRows(rows);
-              res.json({ message: "Success added noted", data })
-            }else{
-              throw new error
-            }
-
-        } catch (error) {
-            res.json({ message: "failed Process", error: error.message })
-        }
-  }
-
-
-  static editNote = async (req, res) =>{
+  static addNote = async (req, res) => {
     try {
-      let NOTE_ID_V = req.body.NOTE_ID ? req.body.NOTE_ID : null
-      let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
+      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null
       let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
       let NOTE_V = req.body.NOTE ? req.body.NOTE : null
       let currentDate = await helper.getCurrent()
 
-
-      
-
-
       const rows = await db.query(
-          `UPDATE sys_note SET Doctor_ID=${DOCTOR_ID_V} , Patient_ID=${PATIENT_ID_V}, NoteContent = '${NOTE_V}' , Creation_Date ='${currentDate}' where Note_ID = ${NOTE_ID_V} `
+        `INSERT INTO sys_note (Doctor_ID , Patient_ID, NoteContent , Creation_Date) VALUES (${DOCTOR_ID_V}, ${PATIENT_ID_V},'${NOTE_V}','${currentDate}' )`
       )
-      
 
       const data = helper.emptyOrRows(rows)
 
-      if(data['affectedRows']){
+      if (data['affectedRows']) {
         const rows = await db.query(`select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`);
         const data = helper.emptyOrRows(rows);
-        res.json({ message: "Success modified note", data })
-      }else{
+        res.json({ message: "Success added noted", data })
+      } else {
         throw new error
       }
 
-  } catch (error) {
+    } catch (error) {
       res.json({ message: "failed Process", error: error.message })
+    }
   }
- }
 
-
-  static delNote = async (req, res) =>{
+  static editNote = async (req, res) => {
     try {
-      let PATIENT_ID_V = req.body.PATIENT_ID ?req.body.PATIENT_ID : null
+      let NOTE_ID_V = req.body.NOTE_ID ? req.body.NOTE_ID : null
+      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null
       let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
       let NOTE_V = req.body.NOTE ? req.body.NOTE : null
       let currentDate = await helper.getCurrent()
-      
-
 
       const rows = await db.query(
-          `DELETE FROM sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} `
+        `UPDATE sys_note SET Doctor_ID=${DOCTOR_ID_V} , Patient_ID=${PATIENT_ID_V}, NoteContent = '${NOTE_V}' , Creation_Date ='${currentDate}' where Note_ID = ${NOTE_ID_V} `
+      )
+
+      const data = helper.emptyOrRows(rows)
+
+      if (data['affectedRows']) {
+        const rows = await db.query(`select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`);
+        const data = helper.emptyOrRows(rows);
+        res.json({ message: "Success modified note", data })
+      } else {
+        throw new error
+      }
+
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message })
+    }
+  }
+
+  static delNote = async (req, res) => {
+    try {
+      let PATIENT_ID_V = req.body.PATIENT_ID ? req.body.PATIENT_ID : null
+      let DOCTOR_ID_V = req.body.DOCTOR_ID ? req.body.DOCTOR_ID : null
+      let NOTE_V = req.body.NOTE ? req.body.NOTE : null
+      let currentDate = await helper.getCurrent()
+
+      const rows = await db.query(
+        `DELETE FROM sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} `
       )
 
       const data = helper.emptyOrRows(rows)
       res.json({ message: "Success deleted note", data })
 
-  } catch (error) {
+    } catch (error) {
       res.json({ message: "failed Process", error: error.message })
-  }
+    }
   }
 
   static DoctorSearchPatientsByName = async (req, res) => {
@@ -328,9 +334,11 @@ class DoctorController {
         query = `sys_patient.F_Name LIKE '${PATIENT_FIRST_NAME_V}%' and sys_patient.L_Name LIKE '${PATIENT_LAST_NAME_V}%'`;
       }
 
-      const rows = await db.query(`select  Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone from 
-mobicare.sys_patient JOIN mobicare.sys_patient_has_doctor ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID 
-where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
+      const rows = await db.query(`select  Patient_ID, Patient_Status, FUID, F_Name, L_Name, Email,Address, Gender, DOB, Weight, Height,Photo, Phone
+        from mobicare.sys_patient
+        JOIN mobicare.sys_patient_has_doctor
+        ON mobicare.sys_patient_has_doctor.Patient_ID=mobicare.sys_patient.ID 
+        where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
 
       const data = helper.emptyOrRows(rows);
       res.json({ message: "Result", data });
@@ -339,9 +347,7 @@ where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
     }
   };
 
-
-
-  static getVideo = async (req, res) =>{
+  static getVideo = async (req, res) => {
     try {
       let DOCTOR_ID_V = req.params.DOCTOR_ID ? req.params.DOCTOR_ID : req.ID;
 
@@ -356,131 +362,99 @@ where sys_patient_has_doctor.Doctor_ID = ${req.ID} AND ${query}`);
       res.json({ message: "failed Process" });
     }
   }
-  static addVideo = async (req, res) =>{
- 
 
-        try {
-
-            let DOCTOR_ID_V = req.ID
-            let VIDEO_URL_V = req.body.VIDEO_URL ? req.body.VIDEO_URL : null
-            let VIDEO_DESC_V = req.body.VIDEO_DESC ? req.body.VIDEO_DESC : null
-            let CURRENTDATE_V = await helper.getCurrent();
-            
-            
-        
-
-            const rows = await db.query(
-                `INSERT INTO sys_videos (Doctor_ID , VIDEO_URL , Video_Desc ,CreationDate) VALUES (${DOCTOR_ID_V}, '${VIDEO_URL_V}', '${VIDEO_DESC_V}','${CURRENTDATE_V}') ;`
-            )
-
-            const data = helper.emptyOrRows(rows)
-
-
-
-            if(data['affectedRows']){
-              const rows = await db.query(`select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V} ;`);
-              const data = helper.emptyOrRows(rows);
-              res.json({ message: "Success added video", data })
-            }else{
-              throw new error
-            }
-
-        } catch (error) {
-            res.json({ message: "failed Process", error: error.message })
-        }
-  }
-
-
-  static editVideo = async (req, res) =>{
-    try {
-      let VIDEO_ID_V = req.body.VIDEO_ID ? req.body.VIDEO_ID : null
-      let DOCTOR_ID_V = req.ID
-      let VIDEO_URL_V = req.body.VIDEO_URL? req.body.VIDEO_URL : null
-      let VIDEO_DESC_V = req.body.VIDEO_DESC? req.body.VIDEO_DESC : null
-      let VIDEO_CREATIONDATE_V = await helper.getCurrent()
-      
-
-      
-
-
-      const rows = await db.query(
-          `UPDATE sys_videos SET Video_URL ='${VIDEO_URL_V}' , Video_Desc ='${VIDEO_DESC_V}' where Video_ID = ${VIDEO_ID_V} AND Doctor_ID= ${DOCTOR_ID_V} `
-      )
-      
-
-      const data = helper.emptyOrRows(rows)
-
-      if(data['affectedRows']){
-        const rows = await db.query(`select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V} ;`);
-        const data = helper.emptyOrRows(rows);
-        res.json({ message: "Success modified note", data })
-      }else{
-        throw new error
-      }
-
-  } catch (error) {
-      res.json({ message: "failed Process", error: error.message })
-  }
- }
-
-
-  static delVideo = async (req, res) =>{
+  static addVideo = async (req, res) => {
     try {
       let DOCTOR_ID_V = req.ID
-      let VIDEO_ID_V = req.params.id ?req.params.id : null
-      
-      
-      
-      
-
+      let VIDEO_URL_V = req.body.VIDEO_URL ? req.body.VIDEO_URL : null
+      let VIDEO_DESC_V = req.body.VIDEO_DESC ? req.body.VIDEO_DESC : null
+      let CURRENTDATE_V = await helper.getCurrent();
 
       const rows = await db.query(
-          `DELETE FROM sys_videos where Video_ID = ${VIDEO_ID_V} AND Doctor_ID=${DOCTOR_ID_V};`
+        `INSERT INTO sys_videos (Doctor_ID , VIDEO_URL , Video_Desc ,CreationDate) VALUES (${DOCTOR_ID_V}, '${VIDEO_URL_V}', '${VIDEO_DESC_V}','${CURRENTDATE_V}') ;`
       )
 
       const data = helper.emptyOrRows(rows)
 
-      if(data['affectedRows']){
+      if (data['affectedRows']) {
         const rows = await db.query(`select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V} ;`);
         const data = helper.emptyOrRows(rows);
         res.json({ message: "Success added video", data })
-        
-      }else{
+      } else {
         throw new error
       }
 
-  } catch (error) {
+    } catch (error) {
       res.json({ message: "failed Process", error: error.message })
+    }
   }
-  }
 
-
-  static getAllVideo = async (req,res)=>{
-
+  static editVideo = async (req, res) => {
     try {
-
+      let VIDEO_ID_V = req.body.VIDEO_ID ? req.body.VIDEO_ID : null
+      let DOCTOR_ID_V = req.ID
+      let VIDEO_URL_V = req.body.VIDEO_URL ? req.body.VIDEO_URL : null
+      let VIDEO_DESC_V = req.body.VIDEO_DESC ? req.body.VIDEO_DESC : null
+      let VIDEO_CREATIONDATE_V = await helper.getCurrent()
 
       const rows = await db.query(
-        `select mobicare.sys_videos.*,mobicare.sys_doctor.F_Name ,mobicare.sys_doctor.L_Name ,mobicare.sys_doctor.Gender from mobicare.sys_videos JOIN sys_doctor ON mobicare.sys_doctor.ID = mobicare.sys_videos.Doctor_ID `
+        `UPDATE sys_videos SET Video_URL ='${VIDEO_URL_V}' , Video_Desc ='${VIDEO_DESC_V}' where Video_ID = ${VIDEO_ID_V} AND Doctor_ID= ${DOCTOR_ID_V} `
+      )
+
+      const data = helper.emptyOrRows(rows)
+
+      if (data['affectedRows']) {
+        const rows = await db.query(`select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V} ;`);
+        const data = helper.emptyOrRows(rows);
+        res.json({ message: "Success modified note", data })
+      } else {
+        throw new error
+      }
+
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message })
+    }
+  }
+
+  static delVideo = async (req, res) => {
+    try {
+      let DOCTOR_ID_V = req.ID
+      let VIDEO_ID_V = req.params.id ? req.params.id : null
+
+      const rows = await db.query(
+        `DELETE FROM sys_videos where Video_ID = ${VIDEO_ID_V} AND Doctor_ID=${DOCTOR_ID_V};`
+      )
+
+      const data = helper.emptyOrRows(rows)
+
+      if (data['affectedRows']) {
+        const rows = await db.query(`select * from mobicare.sys_videos where Doctor_ID = ${DOCTOR_ID_V} ;`);
+        const data = helper.emptyOrRows(rows);
+        res.json({ message: "Success added video", data })
+
+      } else {
+        throw new error
+      }
+    } catch (error) {
+      res.json({ message: "failed Process", error: error.message })
+    }
+  }
+
+  static getAllVideo = async (req, res) => {
+    try {
+      const rows = await db.query(
+        `select mobicare.sys_videos.*,mobicare.sys_doctor.F_Name ,mobicare.sys_doctor.L_Name ,mobicare.sys_doctor.Gender 
+          from mobicare.sys_videos JOIN sys_doctor 
+          ON mobicare.sys_doctor.ID = mobicare.sys_videos.Doctor_ID `
       );
 
       const data = helper.emptyOrRows(rows);
       res.json({ message: "Result", data });
     } catch (error) {
-     
+
       res.json({ message: "failed Process" });
     }
-
-
   }
-
-
-
-
-
-
-
-
 }
 
 module.exports = DoctorController;
