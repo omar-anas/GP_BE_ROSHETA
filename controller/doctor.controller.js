@@ -110,6 +110,7 @@ class DoctorController {
       let PHOTO_V = req.body.PHOTO ? doctor.PHOTO : null;
       let VIDEO_V = req.body.VIDEO ? doctor.VIDEO : null;
       
+      
       if (DOCTOR_PASS_V)
         DOCTOR_PASS_V = await helper.hashingPassword(DOCTOR_PASS_V);
 
@@ -211,9 +212,10 @@ class DoctorController {
 
   static getNote = async (req, res) =>{
     try {
-      let DOCTOR_ID_V = req.query.DOCTOR_ID ? req.query.DOCTOR_ID : null;
+      let DOCTOR_ID_V = req.query.DOCTOR_ID ? req.query.DOCTOR_ID : req.ID;
       let PATIENT_ID_V = req.query.PATIENT_ID ? req.query.PATIENT_ID : null;
 
+      console.log(DOCTOR_ID_V,PATIENT_ID_V)
       const rows = await db.query(
         `select * from mobicare.sys_note where Doctor_ID = ${DOCTOR_ID_V} AND Patient_ID=${PATIENT_ID_V} ;`
       );
