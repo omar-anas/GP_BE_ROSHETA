@@ -106,6 +106,7 @@ class DoctorController {
 
   static editDoctor = async (req, res) => {
     const doctor = req.body;
+    console.log({doctor})
     try {
       let DOCTOR_ID_V = req.params.id ? req.params.id : req.ID;
       let DOCTOR_FUID_V = doctor.FUID ? req.body.FUID : null;
